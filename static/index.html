@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Face Attendance System</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+</head>
+<body>
+    <header class="app-header">
+        <div class="logo"><i class="fa-solid fa-user-check"></i> Face Attendance</div>
+        <button id="showAdminLoginBtn" class="admin-login-btn">Admin Login</button>
+    </header>
+    <nav class="app-nav">
+        <button class="tab-btn active" data-tab="attendance"><i class="fa-solid fa-camera"></i> Attendance</button>
+        <button class="tab-btn" data-tab="users"><i class="fa-solid fa-users"></i> Users</button>
+        <button class="tab-btn" data-tab="log"><i class="fa-solid fa-list-check"></i> Log</button>
+    </nav>
+    <div class="container">
+        <div id="attendance" class="tab-content active card">
+            <video id="webcam" autoplay playsinline></video>
+            <canvas id="captureCanvas" style="display:none;"></canvas>
+            <div class="controls">
+                <label for="nameInput">Register Face (Enter Name):</label>
+                <input type="text" id="nameInput" placeholder="Enter your name for registration" title="User Name">
+                <button id="registerBtn">Register Face</button>
+                <button id="attendanceBtn">Mark Attendance</button>
+                <button id="stopAttendanceBtn" style="display:none;background:#ef4444;"><i class="fa-solid fa-stop"></i> Stop</button>
+            </div>
+            <div id="result"></div>
+            <div class="attendance-status-section">
+                <div class="attendance-status-header">
+                    <label for="attendanceDate">Attendance for: </label>
+                    <input type="date" id="attendanceDate">
+                </div>
+                <div class="attendance-lists">
+                    <div class="attendance-list">
+                        <h3>Present</h3>
+                        <ul id="presentList"></ul>
+                    </div>
+                    <div class="attendance-list">
+                        <h3>Absent</h3>
+                        <ul id="absentList"></ul>
+                    </div>
+                </div>
+            </div>
+            <div class="analytics-card" id="analyticsCard" style="display:none;">
+                <h3>Attendance Analytics</h3>
+                <div id="analyticsStats"></div>
+                <canvas id="analyticsChart" width="320" height="160"></canvas>
+            </div>
+        </div>
+        <div id="users" class="tab-content card">
+            <h2>Registered Users</h2>
+            <div id="userList"></div>
+        </div>
+        <div id="log" class="tab-content card">
+            <h2>Attendance Log</h2>
+            <div class="log-export-bar">
+                <label for="logExportDate" style="display:none;">Export Date</label>
+                <input type="date" id="logExportDate" title="Export Date" placeholder="Select date">
+                <button id="downloadLogByDateBtn" title="Export attendance for selected date"><i class="fa-solid fa-download"></i> Export by Date</button>
+            </div>
+            <button id="downloadLogBtn"><i class="fa-solid fa-download"></i> Download All CSV</button>
+            <div id="logList"></div>
+        </div>
+    </div>
+    <div id="toast" class="toast"></div>
+    <div id="adminLoginModal" class="modal">
+        <div class="modal-content">
+            <span class="close" id="closeLoginModal">&times;</span>
+            <h2>Admin Login</h2>
+            <label for="adminPassword">Admin Password:</label>
+            <input type="password" id="adminPassword" placeholder="Enter admin password" title="Admin Password">
+            <button id="adminLoginBtn">Login</button>
+            <div id="loginError" style="color:#ef4444;margin-top:8px;"></div>
+        </div>
+    </div>
+    <div id="adminBar" class="admin-bar" style="display:none;">
+        <span>Admin Mode</span>
+        <button id="adminLogoutBtn" title="Logout"><i class="fa-solid fa-right-from-bracket"></i> Logout</button>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html> 
