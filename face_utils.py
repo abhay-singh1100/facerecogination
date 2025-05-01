@@ -4,6 +4,8 @@ import numpy as np
 import face_recognition
 from datetime import datetime
 import mediapipe as mp
+import smtplib
+from email.message import EmailMessage
 
 REGISTERED_DIR = 'registered_faces'
 ATTENDANCE_FILE = 'attendance.csv'
@@ -11,12 +13,40 @@ ATTENDANCE_FILE = 'attendance.csv'
 if not os.path.exists(REGISTERED_DIR):
     os.makedirs(REGISTERED_DIR)
 
+def send_email_notification(email, name):
+    sender_email = "abhaychauhan5051@gmail.com"  # Replace with your email
+    sender_password = "csvklapxmsnhubxj"  # Replace with your email password
+    smtp_server = "smtp.gmail.com"
+    smtp_port = 587
+
+    msg = EmailMessage()
+    msg.set_content(f"Hello {name},\n\nYour attendance has been successfully marked.\n\nThank you!\n")
+    msg["Subject"] = "Attendance Marked"
+    msg["From"] = sender_email
+    msg["To"] = email
+
+    try:
+        with smtplib.SMTP(smtp_server, smtp_port) as server:
+            server.starttls()
+            server.login(sender_email, sender_password)
+            server.send_message(msg)
+            print(f"Email sent to {email}")
+    except Exception as e:
+        print(f"Failed to send email to {email}: {e}")
+
 def mark_attendance(name):
-    today = datetime.now().strftime('%Y-%m-%d')
-    if not is_already_present_today(name, today):
-        now = datetime.now().strftime('%H:%M:%S')
-        with open(ATTENDANCE_FILE, 'a') as f:
-            f.write(f'{name},{today},{now},present\n')
+    date = datetime.now().strftime('%Y-%m-%d')
+    time = datetime.now().strftime('%H:%M:%S')
+    attendance_file = 'attendance.csv'
+    with open(attendance_file, 'a') as f:
+        f.write(f"{name},{date},{time},present\n")
+    # Fetch email from user_data.csv
+    with open('user_data.csv', 'r') as file:
+        for line in file:
+            if line.startswith(name + ','):
+                _, email, _ = line.strip().split(',')
+                send_email_notification(email, name)
+                break
 
 def is_already_present_today(name, date):
     if not os.path.exists(ATTENDANCE_FILE):
@@ -156,4 +186,4 @@ def recognize_faces_and_liveness_sequence(imgs):
             if blinked:
                 break
         results.append({'name': name, 'liveness': bool(blinked), 'box': loc})
-    return results 
+    return results

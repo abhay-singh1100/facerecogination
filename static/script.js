@@ -3,6 +3,8 @@ const canvas = document.getElementById('captureCanvas');
 const registerBtn = document.getElementById('registerBtn');
 const attendanceBtn = document.getElementById('attendanceBtn');
 const nameInput = document.getElementById('nameInput');
+const emailInput = document.getElementById('emailInput');
+const rollnoInput = document.getElementById('rollnoInput');
 const resultDiv = document.getElementById('result');
 const stopAttendanceBtn = document.getElementById('stopAttendanceBtn');
 const attendanceDateInput = document.getElementById('attendanceDate');
@@ -48,6 +50,8 @@ async function loadUsers() {
                 const imgSrc = user.image ? `/registered_faces/${user.image}` : '';
                 div.innerHTML = `<img class="user-avatar" src="${imgSrc}" alt="avatar" onerror="this.style.display='none'">
                     <span class="user-name">${user.name}</span>
+                    <span class="user-email">${user.email}</span>
+                    <span class="user-rollno">${user.rollno}</span>
                     <button class="delete-btn" data-name="${user.name}"><i class="fa fa-trash"></i> Delete</button>`;
                 userList.appendChild(div);
             });
@@ -118,8 +122,10 @@ function captureImage() {
 
 registerBtn.onclick = async () => {
     const name = nameInput.value.trim();
-    if (!name) {
-        showToast('Please enter your name.');
+    const email = emailInput.value.trim();
+    const rollno = rollnoInput.value.trim();
+    if (!name || !email || !rollno) {
+        showToast('Please enter your name, email, and roll number.');
         return;
     }
     const imgB64 = captureImage();
@@ -128,7 +134,7 @@ registerBtn.onclick = async () => {
         const res = await fetch('/register', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ name, image: imgB64 })
+            body: JSON.stringify({ name, email, rollno, image: imgB64 })
         });
         const data = await res.json();
         if (data.success) {
@@ -445,4 +451,4 @@ const style = document.createElement('style');
 style.innerHTML = `.spinner {margin: 24px auto;width: 36px;height: 36px;border: 4px solid #e5e7eb;border-top: 4px solid #3b82f6;border-radius: 50%;animation: spin 1s linear infinite;}@keyframes spin {100% {transform: rotate(360deg);}}`;
 document.head.appendChild(style);
 
-showAdminLoginBtn.onclick = showAdminLogin; 
+showAdminLoginBtn.onclick = showAdminLogin;

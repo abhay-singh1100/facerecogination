@@ -694,3 +694,29 @@
   ::-webkit-scrollbar-thumb:hover {
     background: var(--gray-400);
   }
+
+  /* Added styles for email and roll number input fields */
+  input[type="email"], input[type="text"] {
+    padding: 12px 16px;
+    border: 1px solid var(--gray-300);
+    border-radius: var(--radius-md);
+    font-size: 1rem;
+    background: var(--gray-50);
+    transition: all var(--transition);
+    width: 100%;
+    margin-bottom: 16px;
+  }
+
+  input[type="email"]:focus, input[type="text"]:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+  }
+
+  /* Added styles for displaying user details (email and roll number) */
+  .user-email, .user-rollno {
+    display: block;
+    font-size: 0.9rem;
+    color: var(--gray-600);
+    margin-top: 4px;
+  }

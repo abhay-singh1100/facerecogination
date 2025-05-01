@@ -5,11 +5,12 @@ import base64
 import os
 from face_utils import save_face_image, recognize_faces_and_liveness_sequence, mark_attendance, get_attendance_status, mark_attendance_status
 from datetime import datetime
+import csv
 
 app = Flask(__name__, static_folder='static')
 app.secret_key = 'your_secret_key_here'  # Change this in production
 
-ADMIN_PASSWORD = 'admin123'  # Change this in production
+ADMIN_PASSWORD = 'abhay123'  # Change this in production
 
 def is_admin():
     return session.get('is_admin', False)
@@ -39,16 +40,28 @@ def read_image_from_request(img_data_b64):
     img = cv2.imdecode(nparr, cv2.IMREAD_COLOR)
     return img
 
+def save_user_data(name, email, rollno):
+    user_data_file = 'user_data.csv'
+    file_exists = os.path.exists(user_data_file)
+    with open(user_data_file, mode='a', newline='') as file:
+        writer = csv.writer(file)
+        if not file_exists:
+            writer.writerow(['Name', 'Email', 'Roll Number'])
+        writer.writerow([name, email, rollno])
+
 @app.route('/register', methods=['POST'])
 def register():
     data = request.json
     name = data.get('name')
+    email = data.get('email')
+    rollno = data.get('rollno')
     img_b64 = data.get('image')
-    if not name or not img_b64:
-        return jsonify({'success': False, 'error': 'Missing name or image'}), 400
+    if not name or not email or not rollno or not img_b64:
+        return jsonify({'success': False, 'error': 'Missing name, email, rollno, or image'}), 400
     img = read_image_from_request(img_b64)
     save_face_image(name, img)
-    return jsonify({'success': True, 'message': f'{name} registered'})
+    save_user_data(name, email, rollno)
+    return jsonify({'success': True, 'message': f'{name} registered with email {email} and rollno {rollno}'})
 
 @app.route('/attendance', methods=['POST'])
 def attendance():
@@ -119,12 +132,14 @@ def manual_attendance():
 
 @app.route('/users', methods=['GET'])
 def users():
-    # List registered users (names and image filenames)
+    # List registered users (names, emails, roll numbers, and image filenames)
     users = []
-    for fn in os.listdir('registered_faces'):
-        if fn.lower().endswith('.jpg'):
-            name = os.path.splitext(fn)[0]
-            users.append({'name': name, 'image': fn})
+    with open('user_data.csv', 'r') as file:
+        next(file)  # Skip the header row
+        for line in file:
+            name, email, rollno = line.strip().split(',')
+            image_filename = f"{name}.jpg" if os.path.exists(os.path.join('registered_faces', f"{name}.jpg")) else None
+            users.append({'name': name, 'email': email, 'rollno': rollno, 'image': image_filename})
     return jsonify({'users': users})
 
 @app.route('/user/<name>', methods=['DELETE'])
@@ -182,4 +197,4 @@ def attendance_analytics():
     })
 
 if __name__ == '__main__':
-    app.run(debug=True) 
+    app.run(debug=True)
