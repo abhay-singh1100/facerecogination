@@ -6,6 +6,15 @@ from datetime import datetime
 import mediapipe as mp
 import smtplib
 from email.message import EmailMessage
+import logging
+import dlib
+
+# Configure logging
+logging.basicConfig(
+    filename='email_notifications.log',
+    level=logging.INFO,
+    format='%(asctime)s - %(levelname)s - %(message)s'
+)
 
 REGISTERED_DIR = 'registered_faces'
 ATTENDANCE_FILE = 'attendance.csv'
@@ -30,8 +39,9 @@ def send_email_notification(email, name):
             server.starttls()
             server.login(sender_email, sender_password)
             server.send_message(msg)
-            print(f"Email sent to {email}")
+            logging.info(f"Email successfully sent to {email}")
     except Exception as e:
+        logging.error(f"Failed to send email to {email}: {e}")
         print(f"Failed to send email to {email}: {e}")
 
 def mark_attendance(name):
@@ -93,12 +103,25 @@ def save_face_image(name, img_bgr):
 
 def recognize_faces_and_liveness(img_bgr):
     """
+    Improved face detection and liveness detection method for better accuracy.
     Returns a list of dicts: [{ 'name': str or None, 'liveness': bool, 'box': (top, right, bottom, left) }]
     """
     known_encs, known_names = load_registered_faces()
     rgb = cv2.cvtColor(img_bgr, cv2.COLOR_BGR2RGB)
-    face_locations = face_recognition.face_locations(rgb)
-    encs = face_recognition.face_encodings(rgb, face_locations)
+
+    # Use a more robust face detection model (e.g., dlib's CNN face detector)
+    cnn_face_detector = dlib.cnn_face_detection_model_v1('mmod_human_face_detector.dat')
+    face_locations = cnn_face_detector(rgb, 1)  # Upsample the image once for better accuracy
+
+    encs = []
+    refined_locations = []
+    for face in face_locations:
+        rect = face.rect
+        top, right, bottom, left = rect.top(), rect.right(), rect.bottom(), rect.left()
+        refined_locations.append((top, right, bottom, left))
+        face_enc = face_recognition.face_encodings(rgb, [(top, right, bottom, left)])
+        if face_enc:
+            encs.append(face_enc[0])
 
     # Liveness detection setup
     mp_fm = mp.solutions.face_mesh
@@ -107,7 +130,7 @@ def recognize_faces_and_liveness(img_bgr):
         fm_res = fm.process(rgb)
         face_landmarks_list = fm_res.multi_face_landmarks if fm_res.multi_face_landmarks else []
 
-        for i, (enc, loc) in enumerate(zip(encs, face_locations)):
+        for i, (enc, loc) in enumerate(zip(encs, refined_locations)):
             name = None
             if known_encs:
                 idx = np.argmin(face_recognition.face_distance(known_encs, enc))

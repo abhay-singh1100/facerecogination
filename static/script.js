@@ -452,3 +452,8 @@ style.innerHTML = `.spinner {margin: 24px auto;width: 36px;height: 36px;border: 
 document.head.appendChild(style);
 
 showAdminLoginBtn.onclick = showAdminLogin;
+
+const refreshBtn = document.getElementById('refreshBtn');
+refreshBtn.onclick = () => {
+    location.reload();
+};

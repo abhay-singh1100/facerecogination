@@ -4,9 +4,19 @@
   }
   
   :root {
-    --primary: #3b82f6;
-    --primary-dark: #2563eb;
-    --primary-light: #60a5fa;
+    --primary: #1d4ed8;
+    --primary-dark: #1e40af;
+    --primary-light: #3b82f6;
+    --secondary: #9333ea;
+    --secondary-light: #a855f7;
+    --background: #f3f4f6;
+    --card-bg: #ffffff;
+    --text-color: #1f2937;
+    --text-muted: #6b7280;
+    --border-color: #e5e7eb;
+    --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --radius: 8px;
+    --transition: 0.3s ease;
     --danger: #dc2626;
     --danger-dark: #b91c1c;
     --success: #10b981;
@@ -22,42 +32,36 @@
     --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
     --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.05), 0 2px 4px rgba(0, 0, 0, 0.03);
     --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.05), 0 4px 6px rgba(0, 0, 0, 0.03);
-    --transition: 200ms cubic-bezier(0.4, 0, 0.2, 1);
     --radius-sm: 6px;
     --radius-md: 8px;
     --radius-lg: 12px;
   }
   
   body {
-    background: #f8fafc;
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: var(--background);
+    font-family: 'Inter', sans-serif;
+    color: var(--text-color);
     margin: 0;
     padding: 0;
     line-height: 1.6;
-    color: var(--gray-800);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
   
   /* Header & Navigation */
   .app-header {
-    position: sticky;
-    top: 0;
-    background: #fff;
-    box-shadow: var(--shadow-md);
-    z-index: 10;
-    padding: 0 16px;
-    height: 64px;
+    background: var(--primary);
+    color: #ffffff;
+    padding: 16px 24px;
     display: flex;
     align-items: center;
     justify-content: space-between;
+    box-shadow: var(--shadow);
   }
   
   .logo {
-    font-size: 1.4rem;
-    font-weight: 700;
-    color: var(--primary);
-    letter-spacing: -0.02em;
+    font-size: 1.5rem;
+    font-weight: bold;
     display: flex;
     align-items: center;
     gap: 10px;
@@ -67,26 +71,23 @@
   .app-nav {
     display: flex;
     justify-content: center;
-    gap: 12px;
-    background: #fff;
+    gap: 16px;
+    background: var(--card-bg);
     padding: 12px 0;
-    border-bottom: 1px solid var(--gray-200);
-    position: sticky;
-    top: 64px;
-    z-index: 9;
-    box-shadow: var(--shadow-sm);
+    border-bottom: 1px solid var(--border-color);
+    box-shadow: var(--shadow);
   }
   
   .app-nav .tab-btn {
-    padding: 10px 24px;
+    padding: 10px 20px;
     border: none;
-    border-radius: var(--radius-md);
+    border-radius: var(--radius);
     background: transparent;
-    color: var(--gray-600);
+    color: var(--text-muted);
     font-size: 1rem;
     font-weight: 500;
     cursor: pointer;
-    transition: all var(--transition);
+    transition: background var(--transition), color var(--transition);
     display: flex;
     align-items: center;
     gap: 8px;
@@ -94,36 +95,38 @@
   
   .app-nav .tab-btn.active {
     background: var(--primary);
-    color: #fff;
-    box-shadow: var(--shadow-sm);
+    color: #ffffff;
   }
   
-  .app-nav .tab-btn:hover:not(.active) {
-    background: var(--gray-100);
-    color: var(--gray-800);
+  .app-nav .tab-btn:hover {
+    background: var(--primary-light);
+    color: #ffffff;
   }
   
   /* Container and Cards */
   .container {
-    max-width: 640px;
-    margin: 32px auto 40px auto;
-    padding: 0 16px;
-    text-align: center;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+    justify-content: space-between;
   }
   
   .card {
-    background: #fff;
-    border-radius: var(--radius-lg);
-    box-shadow: var(--shadow-md);
-    padding: 28px 24px;
+    flex: 1 1 calc(33% - 24px); /* Ensure cards take up equal space and wrap properly */
+    min-width: 300px;
+    background: var(--card-bg);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 24px;
+    transition: transform var(--transition), box-shadow var(--transition);
+    border: 1px solid var(--border-color);
     margin-bottom: 24px;
     margin-top: 24px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    border: 1px solid var(--gray-200);
   }
   
   .card:hover {
-    box-shadow: var(--shadow-lg);
+    transform: translateY(-4px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
   }
   
   .card:only-child {
@@ -131,10 +134,9 @@
   }
   
   .card h2 {
-    margin-top: 0;
-    margin-bottom: 20px;
+    margin: 0 0 16px;
     font-size: 1.25rem;
-    color: var(--gray-900);
+    color: var(--text-color);
     font-weight: 600;
   }
   
@@ -150,10 +152,12 @@
   }
   
   .controls {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-    margin-bottom: 24px;
+    margin-bottom: 32px;
+    padding: 16px;
+    background: var(--card-bg);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    border: 1px solid var(--border-color);
   }
   
   input[type="text"] {
@@ -173,22 +177,21 @@
   }
   
   button {
-    padding: 12px 24px;
+    padding: 12px 20px;
     border: none;
-    border-radius: var(--radius-md);
+    border-radius: var(--radius);
     background: var(--primary);
     color: #ffffff;
     font-size: 1rem;
     font-weight: 500;
     cursor: pointer;
-    transition: all var(--transition);
-    box-shadow: var(--shadow-sm);
+    transition: background var(--transition), transform var(--transition);
+    box-shadow: var(--shadow);
   }
   
   button:hover {
     background: var(--primary-dark);
     transform: translateY(-2px);
-    box-shadow: var(--shadow-md);
   }
   
   button:active {
@@ -361,18 +364,18 @@
   /* Attendance Section */
   .attendance-status-section {
     margin-top: 32px;
-    background: #fff;
-    border-radius: var(--radius-lg);
-    padding: 22px 18px 18px 18px;
-    box-shadow: var(--shadow-md);
-    border: 1px solid var(--gray-200);
+    padding: 20px;
+    background: var(--card-bg);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    border: 1px solid var(--border-color);
   }
   
   .attendance-status-header {
     display: flex;
     align-items: center;
-    gap: 12px;
-    margin-bottom: 20px;
+    justify-content: space-between;
+    margin-bottom: 16px;
     font-size: 1.08rem;
     color: var(--gray-800);
     font-weight: 500;
@@ -380,18 +383,23 @@
   
   .attendance-lists {
     display: flex;
-    gap: 32px;
+    gap: 16px;
     justify-content: center;
   }
   
   .attendance-list {
     flex: 1;
+    background: var(--background);
+    border-radius: var(--radius);
+    padding: 16px;
+    box-shadow: var(--shadow);
+    border: 1px solid var(--border-color);
     min-width: 120px;
   }
   
   .attendance-list h3 {
-    margin: 0 0 12px 0;
-    font-size: 1.08rem;
+    margin: 0 0 12px;
+    font-size: 1.1rem;
     color: var(--primary);
     font-weight: 600;
     padding-bottom: 8px;
@@ -406,22 +414,22 @@
   }
   
   #presentList li, #absentList li {
-    background: #fff;
-    border-radius: var(--radius-sm);
+    background: var(--card-bg);
+    border-radius: var(--radius);
     margin-bottom: 8px;
     padding: 10px 14px;
     display: flex;
     align-items: center;
     justify-content: space-between;
     font-size: 1rem;
-    box-shadow: var(--shadow-sm);
-    border: 1px solid var(--gray-200);
-    transition: all var(--transition);
+    box-shadow: var(--shadow);
+    border: 1px solid var(--border-color);
+    transition: transform var(--transition), box-shadow var(--transition);
   }
   
   #presentList li:hover, #absentList li:hover {
-    box-shadow: var(--shadow-md);
-    border-color: var(--gray-300);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   }
   
   .mark-btn {

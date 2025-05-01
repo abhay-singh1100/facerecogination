@@ -1,0 +1,333 @@
+2025-05-01 22:21:18,378 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-05-01 22:21:18,378 - INFO - [33mPress CTRL+C to quit[0m
+2025-05-01 22:21:18,385 - INFO -  * Restarting with stat
+2025-05-01 22:21:29,358 - WARNING -  * Debugger is active!
+2025-05-01 22:21:29,364 - INFO -  * Debugger PIN: 900-711-091
+2025-05-01 22:22:20,756 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-05-01 22:22:20,756 - INFO - [33mPress CTRL+C to quit[0m
+2025-05-01 22:22:20,763 - INFO -  * Restarting with stat
+2025-05-01 22:22:32,137 - WARNING -  * Debugger is active!
+2025-05-01 22:22:32,142 - INFO -  * Debugger PIN: 900-711-091
+2025-05-01 22:22:32,399 - INFO - 127.0.0.1 - - [01/May/2025 22:22:32] "[36mGET / HTTP/1.1[0m" 304 -
+2025-05-01 22:22:32,484 - INFO - 127.0.0.1 - - [01/May/2025 22:22:32] "[36mGET /style.css HTTP/1.1[0m" 304 -
+2025-05-01 22:22:32,491 - INFO - 127.0.0.1 - - [01/May/2025 22:22:32] "[36mGET /script.js HTTP/1.1[0m" 304 -
+2025-05-01 22:22:34,997 - INFO - 127.0.0.1 - - [01/May/2025 22:22:34] "GET /is_admin HTTP/1.1" 200 -
+2025-05-01 22:22:35,007 - INFO - 127.0.0.1 - - [01/May/2025 22:22:35] "GET /attendance_status?date=2025-05-01 HTTP/1.1" 200 -
+2025-05-01 22:22:35,248 - INFO - 127.0.0.1 - - [01/May/2025 22:22:35] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-05-01 22:22:45,828 - INFO - 127.0.0.1 - - [01/May/2025 22:22:45] "POST /login HTTP/1.1" 200 -
+2025-05-01 22:22:49,667 - INFO - 127.0.0.1 - - [01/May/2025 22:22:49] "POST /manual_attendance HTTP/1.1" 200 -
+2025-05-01 22:22:50,013 - INFO - 127.0.0.1 - - [01/May/2025 22:22:50] "GET /attendance_status?date=2025-05-01 HTTP/1.1" 200 -
+2025-05-01 22:22:50,783 - INFO - 127.0.0.1 - - [01/May/2025 22:22:50] "POST /manual_attendance HTTP/1.1" 200 -
+2025-05-01 22:22:51,111 - INFO - 127.0.0.1 - - [01/May/2025 22:22:51] "GET /attendance_status?date=2025-05-01 HTTP/1.1" 200 -
+2025-05-01 22:22:51,463 - INFO - 127.0.0.1 - - [01/May/2025 22:22:51] "POST /manual_attendance HTTP/1.1" 200 -
+2025-05-01 22:22:51,797 - INFO - 127.0.0.1 - - [01/May/2025 22:22:51] "GET /attendance_status?date=2025-05-01 HTTP/1.1" 200 -
+2025-05-01 22:22:52,099 - INFO - 127.0.0.1 - - [01/May/2025 22:22:52] "POST /manual_attendance HTTP/1.1" 200 -
+2025-05-01 22:22:52,445 - INFO - 127.0.0.1 - - [01/May/2025 22:22:52] "GET /attendance_status?date=2025-05-01 HTTP/1.1" 200 -
+2025-05-01 22:22:52,747 - INFO - 127.0.0.1 - - [01/May/2025 22:22:52] "POST /manual_attendance HTTP/1.1" 200 -
+2025-05-01 22:22:53,078 - INFO - 127.0.0.1 - - [01/May/2025 22:22:53] "GET /attendance_status?date=2025-05-01 HTTP/1.1" 200 -
+2025-05-01 22:22:59,944 - INFO - 127.0.0.1 - - [01/May/2025 22:22:59] "POST /attendance HTTP/1.1" 200 -
+2025-05-01 22:23:00,278 - INFO - 127.0.0.1 - - [01/May/2025 22:23:00] "GET /attendance_status?date=2025-05-01 HTTP/1.1" 200 -
+2025-05-01 22:23:07,709 - INFO - 127.0.0.1 - - [01/May/2025 22:23:07] "POST /attendance HTTP/1.1" 200 -
+2025-05-01 22:23:10,548 - INFO - 127.0.0.1 - - [01/May/2025 22:23:10] "POST /attendance HTTP/1.1" 200 -
+2025-05-01 22:23:10,880 - INFO - 127.0.0.1 - - [01/May/2025 22:23:10] "GET /attendance_status?date=2025-05-01 HTTP/1.1" 200 -
+2025-05-01 22:23:13,486 - INFO - 127.0.0.1 - - [01/May/2025 22:23:13] "POST /attendance HTTP/1.1" 200 -
+2025-05-01 22:23:13,924 - INFO - 127.0.0.1 - - [01/May/2025 22:23:13] "GET /users HTTP/1.1" 200 -
+2025-05-01 22:23:16,405 - INFO - 127.0.0.1 - - [01/May/2025 22:23:16] "POST /attendance HTTP/1.1" 200 -
+2025-05-01 22:23:19,780 - INFO - 127.0.0.1 - - [01/May/2025 22:23:19] "POST /attendance HTTP/1.1" 200 -
+2025-05-01 22:23:46,984 - INFO - 127.0.0.1 - - [01/May/2025 22:23:46] "POST /register HTTP/1.1" 200 -
+2025-05-01 22:23:58,460 - INFO - Email successfully sent to abhaychauhan5051a@gmail.com
+2025-05-01 22:23:58,731 - INFO - 127.0.0.1 - - [01/May/2025 22:23:58] "POST /attendance HTTP/1.1" 200 -
+2025-05-01 22:23:59,055 - INFO - 127.0.0.1 - - [01/May/2025 22:23:59] "GET /attendance_status?date=2025-05-01 HTTP/1.1" 200 -
+2025-05-01 22:24:05,552 - INFO - 127.0.0.1 - - [01/May/2025 22:24:05] "GET /attendance_log HTTP/1.1" 200 -
+2025-05-01 22:24:06,272 - INFO - 127.0.0.1 - - [01/May/2025 22:24:06] "GET /users HTTP/1.1" 200 -
+2025-05-01 22:24:06,607 - INFO - 127.0.0.1 - - [01/May/2025 22:24:06] "[33mGET /registered_faces/abhaysingh.jpg HTTP/1.1[0m" 404 -
+2025-05-01 22:24:11,664 - INFO - Email successfully sent to abhaychauhan5051a@gmail.com
+2025-05-01 22:24:12,269 - INFO - 127.0.0.1 - - [01/May/2025 22:24:12] "POST /attendance HTTP/1.1" 200 -
+2025-05-01 22:24:12,612 - INFO - 127.0.0.1 - - [01/May/2025 22:24:12] "GET /attendance_status?date=2025-05-01 HTTP/1.1" 200 -
+2025-05-01 22:24:13,382 - INFO - 127.0.0.1 - - [01/May/2025 22:24:13] "POST /attendance HTTP/1.1" 200 -
+2025-05-01 22:24:14,756 - INFO - Email successfully sent to abhaychauhan5051a@gmail.com
+2025-05-01 22:24:15,294 - INFO - 127.0.0.1 - - [01/May/2025 22:24:15] "POST /attendance HTTP/1.1" 200 -
+2025-05-01 22:24:15,620 - INFO - 127.0.0.1 - - [01/May/2025 22:24:15] "GET /attendance_status?date=2025-05-01 HTTP/1.1" 200 -
+2025-05-01 22:24:19,808 - INFO - Email successfully sent to abhaychauhan5051a@gmail.com
+2025-05-01 22:24:20,069 - INFO - 127.0.0.1 - - [01/May/2025 22:24:20] "POST /attendance HTTP/1.1" 200 -
+2025-05-01 22:24:20,402 - INFO - 127.0.0.1 - - [01/May/2025 22:24:20] "GET /attendance_status?date=2025-05-01 HTTP/1.1" 200 -
+2025-05-01 22:24:37,449 - INFO - 127.0.0.1 - - [01/May/2025 22:24:37] "POST /attendance HTTP/1.1" 200 -
+2025-05-01 22:24:40,321 - INFO - 127.0.0.1 - - [01/May/2025 22:24:40] "POST /attendance HTTP/1.1" 200 -
+2025-05-01 22:24:43,527 - INFO - 127.0.0.1 - - [01/May/2025 22:24:43] "POST /attendance HTTP/1.1" 200 -
+2025-05-01 22:24:46,555 - INFO - 127.0.0.1 - - [01/May/2025 22:24:46] "POST /attendance HTTP/1.1" 200 -
+2025-05-01 22:24:50,923 - INFO - 127.0.0.1 - - [01/May/2025 22:24:50] "POST /attendance HTTP/1.1" 200 -
+2025-05-01 22:24:55,407 - INFO - 127.0.0.1 - - [01/May/2025 22:24:55] "POST /attendance HTTP/1.1" 200 -
+2025-05-01 22:24:58,060 - INFO - 127.0.0.1 - - [01/May/2025 22:24:58] "POST /attendance HTTP/1.1" 200 -
+2025-05-01 22:24:59,761 - INFO - 127.0.0.1 - - [01/May/2025 22:24:59] "POST /attendance HTTP/1.1" 200 -
+2025-05-01 22:25:02,571 - INFO - 127.0.0.1 - - [01/May/2025 22:25:02] "POST /attendance HTTP/1.1" 200 -
+2025-05-01 22:25:10,777 - INFO - Email successfully sent to abhaychauhan5051a@gmail.com
+2025-05-01 22:25:11,052 - INFO - 127.0.0.1 - - [01/May/2025 22:25:11] "POST /attendance HTTP/1.1" 200 -
+2025-05-01 22:25:11,696 - INFO - 127.0.0.1 - - [01/May/2025 22:25:11] "GET /attendance_status?date=2025-05-01 HTTP/1.1" 200 -
+2025-05-01 22:28:46,560 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-05-01 22:28:46,564 - INFO - [33mPress CTRL+C to quit[0m
+2025-05-01 22:28:46,572 - INFO -  * Restarting with stat
+2025-05-01 22:29:03,233 - WARNING -  * Debugger is active!
+2025-05-01 22:29:03,267 - INFO -  * Debugger PIN: 900-711-091
+2025-05-01 22:29:03,665 - INFO - 127.0.0.1 - - [01/May/2025 22:29:03] "GET / HTTP/1.1" 200 -
+2025-05-01 22:29:04,029 - INFO - 127.0.0.1 - - [01/May/2025 22:29:04] "[36mGET /style.css HTTP/1.1[0m" 304 -
+2025-05-01 22:29:04,032 - INFO - 127.0.0.1 - - [01/May/2025 22:29:04] "GET /script.js HTTP/1.1" 200 -
+2025-05-01 22:29:04,304 - INFO - 127.0.0.1 - - [01/May/2025 22:29:04] "GET /is_admin HTTP/1.1" 200 -
+2025-05-01 22:29:04,422 - INFO - 127.0.0.1 - - [01/May/2025 22:29:04] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-05-01 22:29:04,422 - INFO - 127.0.0.1 - - [01/May/2025 22:29:04] "GET /attendance_status?date=2025-05-01 HTTP/1.1" 200 -
+2025-05-01 22:29:45,935 - INFO - 127.0.0.1 - - [01/May/2025 22:29:45] "POST /login HTTP/1.1" 200 -
+2025-05-01 22:30:26,472 - INFO - 127.0.0.1 - - [01/May/2025 22:30:26] "GET /attendance_log HTTP/1.1" 200 -
+2025-05-01 22:30:27,436 - INFO - 127.0.0.1 - - [01/May/2025 22:30:27] "GET /users HTTP/1.1" 200 -
+2025-05-01 22:30:27,703 - INFO - 127.0.0.1 - - [01/May/2025 22:30:27] "[33mGET /registered_faces/abhaysingh.jpg HTTP/1.1[0m" 404 -
+2025-05-01 22:30:30,581 - INFO - 127.0.0.1 - - [01/May/2025 22:30:30] "GET /attendance_log HTTP/1.1" 200 -
+2025-05-01 22:30:36,704 - INFO - 127.0.0.1 - - [01/May/2025 22:30:36] "GET /users HTTP/1.1" 200 -
+2025-05-01 22:30:36,954 - INFO - 127.0.0.1 - - [01/May/2025 22:30:36] "[33mGET /registered_faces/abhaysingh.jpg HTTP/1.1[0m" 404 -
+2025-05-01 22:30:37,016 - INFO - 127.0.0.1 - - [01/May/2025 22:30:37] "GET /attendance_log HTTP/1.1" 200 -
+2025-05-01 22:30:37,393 - INFO - 127.0.0.1 - - [01/May/2025 22:30:37] "GET /users HTTP/1.1" 200 -
+2025-05-01 22:30:37,719 - INFO - 127.0.0.1 - - [01/May/2025 22:30:37] "[33mGET /registered_faces/abhaysingh.jpg HTTP/1.1[0m" 404 -
+2025-05-01 22:30:41,917 - INFO - 127.0.0.1 - - [01/May/2025 22:30:41] "[36mGET / HTTP/1.1[0m" 304 -
+2025-05-01 22:30:42,220 - INFO - 127.0.0.1 - - [01/May/2025 22:30:42] "[36mGET /style.css HTTP/1.1[0m" 304 -
+2025-05-01 22:30:42,274 - INFO - 127.0.0.1 - - [01/May/2025 22:30:42] "[36mGET /script.js HTTP/1.1[0m" 304 -
+2025-05-01 22:30:42,588 - INFO - 127.0.0.1 - - [01/May/2025 22:30:42] "GET /is_admin HTTP/1.1" 200 -
+2025-05-01 22:30:42,592 - INFO - 127.0.0.1 - - [01/May/2025 22:30:42] "GET /attendance_status?date=2025-05-01 HTTP/1.1" 200 -
+2025-05-01 22:30:56,013 - INFO - Email successfully sent to abhaychauhan5051a@gmail.com
+2025-05-01 22:30:56,289 - INFO - 127.0.0.1 - - [01/May/2025 22:30:56] "POST /attendance HTTP/1.1" 200 -
+2025-05-01 22:30:56,329 - INFO - 127.0.0.1 - - [01/May/2025 22:30:56] "GET /attendance_status?date=2025-05-01 HTTP/1.1" 200 -
+2025-05-01 22:31:00,632 - INFO - 127.0.0.1 - - [01/May/2025 22:31:00] "[36mGET / HTTP/1.1[0m" 304 -
+2025-05-01 22:31:00,670 - INFO - 127.0.0.1 - - [01/May/2025 22:31:00] "[36mGET /style.css HTTP/1.1[0m" 304 -
+2025-05-01 22:31:00,890 - INFO - 127.0.0.1 - - [01/May/2025 22:31:00] "[36mGET /script.js HTTP/1.1[0m" 304 -
+2025-05-01 22:31:01,205 - INFO - 127.0.0.1 - - [01/May/2025 22:31:01] "GET /is_admin HTTP/1.1" 200 -
+2025-05-01 22:31:01,208 - INFO - 127.0.0.1 - - [01/May/2025 22:31:01] "GET /attendance_status?date=2025-05-01 HTTP/1.1" 200 -
+2025-05-01 22:31:08,082 - INFO -  * Detected change in 'c:\\facerecogination\\app.py', reloading
+2025-05-01 22:31:09,529 - INFO -  * Restarting with stat
+2025-05-01 22:31:21,978 - WARNING -  * Debugger is active!
+2025-05-01 22:31:21,984 - INFO -  * Debugger PIN: 900-711-091
+2025-05-01 22:32:10,194 - INFO -  * Detected change in 'c:\\facerecogination\\face_utils.py', reloading
+2025-05-01 22:32:11,387 - INFO -  * Restarting with stat
+2025-05-01 22:32:22,313 - WARNING -  * Debugger is active!
+2025-05-01 22:32:22,321 - INFO -  * Debugger PIN: 900-711-091
+2025-05-01 22:33:29,736 - INFO -  * Detected change in 'c:\\facerecogination\\face_utils.py', reloading
+2025-05-01 22:33:30,834 - INFO -  * Restarting with stat
+2025-05-01 22:33:59,342 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-05-01 22:33:59,342 - INFO - [33mPress CTRL+C to quit[0m
+2025-05-01 22:33:59,342 - INFO -  * Restarting with stat
+2025-05-01 22:34:11,883 - WARNING -  * Debugger is active!
+2025-05-01 22:34:11,896 - INFO -  * Debugger PIN: 900-711-091
+2025-05-01 22:34:12,188 - INFO - 127.0.0.1 - - [01/May/2025 22:34:12] "[36mGET / HTTP/1.1[0m" 304 -
+2025-05-01 22:34:12,568 - INFO - 127.0.0.1 - - [01/May/2025 22:34:12] "[36mGET /style.css HTTP/1.1[0m" 304 -
+2025-05-01 22:34:12,569 - INFO - 127.0.0.1 - - [01/May/2025 22:34:12] "[36mGET /script.js HTTP/1.1[0m" 304 -
+2025-05-01 22:34:12,822 - INFO - 127.0.0.1 - - [01/May/2025 22:34:12] "GET /is_admin HTTP/1.1" 200 -
+2025-05-01 22:34:12,893 - INFO - 127.0.0.1 - - [01/May/2025 22:34:12] "GET /attendance_status?date=2025-05-01 HTTP/1.1" 200 -
+2025-05-01 22:34:12,894 - INFO - 127.0.0.1 - - [01/May/2025 22:34:12] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-05-01 22:34:19,343 - INFO - 127.0.0.1 - - [01/May/2025 22:34:19] "POST /login HTTP/1.1" 200 -
+2025-05-01 22:34:32,152 - INFO - Email successfully sent to abhaychauhan5051a@gmail.com
+2025-05-01 22:34:32,429 - INFO - 127.0.0.1 - - [01/May/2025 22:34:32] "POST /attendance HTTP/1.1" 200 -
+2025-05-01 22:34:32,755 - INFO - 127.0.0.1 - - [01/May/2025 22:34:32] "GET /attendance_status?date=2025-05-01 HTTP/1.1" 200 -
+2025-05-01 22:34:56,956 - INFO - Email successfully sent to abhaychauhan5051a@gmail.com
+2025-05-01 22:34:57,289 - INFO - 127.0.0.1 - - [01/May/2025 22:34:57] "POST /attendance HTTP/1.1" 200 -
+2025-05-01 22:34:59,395 - INFO - 127.0.0.1 - - [01/May/2025 22:34:59] "POST /attendance HTTP/1.1" 200 -
+2025-05-01 22:35:00,016 - INFO - 127.0.0.1 - - [01/May/2025 22:35:00] "GET /attendance_status?date=2025-05-01 HTTP/1.1" 200 -
+2025-05-01 22:35:00,662 - INFO - 127.0.0.1 - - [01/May/2025 22:35:00] "POST /attendance HTTP/1.1" 200 -
+2025-05-01 22:35:00,703 - INFO - 127.0.0.1 - - [01/May/2025 22:35:00] "POST /attendance HTTP/1.1" 200 -
+2025-05-01 22:35:01,624 - INFO - 127.0.0.1 - - [01/May/2025 22:35:01] "POST /attendance HTTP/1.1" 200 -
+2025-05-01 22:35:02,701 - INFO - 127.0.0.1 - - [01/May/2025 22:35:02] "POST /attendance HTTP/1.1" 200 -
+2025-05-01 22:35:09,070 - INFO - 127.0.0.1 - - [01/May/2025 22:35:09] "POST /attendance HTTP/1.1" 200 -
+2025-05-01 22:35:11,616 - INFO - 127.0.0.1 - - [01/May/2025 22:35:11] "POST /attendance HTTP/1.1" 200 -
+2025-05-01 22:35:14,294 - INFO - 127.0.0.1 - - [01/May/2025 22:35:14] "POST /attendance HTTP/1.1" 200 -
+2025-05-01 22:35:15,937 - INFO - 127.0.0.1 - - [01/May/2025 22:35:15] "POST /attendance HTTP/1.1" 200 -
+2025-05-01 22:35:17,764 - INFO - 127.0.0.1 - - [01/May/2025 22:35:17] "POST /attendance HTTP/1.1" 200 -
+2025-05-01 22:35:19,140 - INFO - Email successfully sent to abhaychauhan5051a@gmail.com
+2025-05-01 22:35:19,840 - INFO - 127.0.0.1 - - [01/May/2025 22:35:19] "POST /attendance HTTP/1.1" 200 -
+2025-05-01 22:35:19,961 - INFO - 127.0.0.1 - - [01/May/2025 22:35:19] "POST /attendance HTTP/1.1" 200 -
+2025-05-01 22:35:20,211 - INFO - 127.0.0.1 - - [01/May/2025 22:35:20] "GET /attendance_status?date=2025-05-01 HTTP/1.1" 200 -
+2025-05-01 22:35:22,522 - INFO - 127.0.0.1 - - [01/May/2025 22:35:22] "POST /attendance HTTP/1.1" 200 -
+2025-05-01 22:35:24,006 - INFO - 127.0.0.1 - - [01/May/2025 22:35:24] "POST /attendance HTTP/1.1" 200 -
+2025-05-01 22:35:26,201 - INFO - 127.0.0.1 - - [01/May/2025 22:35:26] "POST /attendance HTTP/1.1" 200 -
+2025-05-01 22:35:34,133 - INFO - Email successfully sent to abhaychauhan5051a@gmail.com
+2025-05-01 22:35:34,400 - INFO - 127.0.0.1 - - [01/May/2025 22:35:34] "POST /attendance HTTP/1.1" 200 -
+2025-05-01 22:35:34,765 - INFO - 127.0.0.1 - - [01/May/2025 22:35:34] "GET /attendance_status?date=2025-05-01 HTTP/1.1" 200 -
+2025-05-01 22:35:37,257 - INFO - Email successfully sent to abhaychauhan5051a@gmail.com
+2025-05-01 22:35:37,553 - INFO - 127.0.0.1 - - [01/May/2025 22:35:37] "POST /attendance HTTP/1.1" 200 -
+2025-05-01 22:35:37,913 - INFO - 127.0.0.1 - - [01/May/2025 22:35:37] "GET /attendance_status?date=2025-05-01 HTTP/1.1" 200 -
+2025-05-01 22:35:40,129 - INFO - Email successfully sent to abhaychauhan5051a@gmail.com
+2025-05-01 22:35:40,412 - INFO - 127.0.0.1 - - [01/May/2025 22:35:40] "POST /attendance HTTP/1.1" 200 -
+2025-05-01 22:35:40,764 - INFO - 127.0.0.1 - - [01/May/2025 22:35:40] "GET /attendance_status?date=2025-05-01 HTTP/1.1" 200 -
+2025-05-01 22:35:43,100 - INFO - 127.0.0.1 - - [01/May/2025 22:35:43] "POST /manual_attendance HTTP/1.1" 200 -
+2025-05-01 22:35:43,452 - INFO - 127.0.0.1 - - [01/May/2025 22:35:43] "GET /attendance_status?date=2025-05-01 HTTP/1.1" 200 -
+2025-05-01 22:35:43,788 - INFO - Email successfully sent to abhaychauhan5051a@gmail.com
+2025-05-01 22:35:44,051 - INFO - 127.0.0.1 - - [01/May/2025 22:35:44] "POST /attendance HTTP/1.1" 200 -
+2025-05-01 22:35:44,390 - INFO - 127.0.0.1 - - [01/May/2025 22:35:44] "GET /attendance_status?date=2025-05-01 HTTP/1.1" 200 -
+2025-05-01 22:35:46,184 - INFO - Email successfully sent to abhaychauhan5051a@gmail.com
+2025-05-01 22:35:46,447 - INFO - 127.0.0.1 - - [01/May/2025 22:35:46] "POST /attendance HTTP/1.1" 200 -
+2025-05-01 22:35:46,785 - INFO - 127.0.0.1 - - [01/May/2025 22:35:46] "GET /attendance_status?date=2025-05-01 HTTP/1.1" 200 -
+2025-05-01 22:35:47,332 - INFO - 127.0.0.1 - - [01/May/2025 22:35:47] "POST /attendance HTTP/1.1" 200 -
+2025-05-01 22:35:50,206 - INFO - Email successfully sent to abhaychauhan5051a@gmail.com
+2025-05-01 22:35:50,430 - INFO - 127.0.0.1 - - [01/May/2025 22:35:50] "POST /attendance HTTP/1.1" 200 -
+2025-05-01 22:35:50,857 - INFO - 127.0.0.1 - - [01/May/2025 22:35:50] "POST /attendance HTTP/1.1" 200 -
+2025-05-01 22:35:50,928 - INFO - 127.0.0.1 - - [01/May/2025 22:35:50] "POST /manual_attendance HTTP/1.1" 200 -
+2025-05-01 22:35:51,602 - INFO - 127.0.0.1 - - [01/May/2025 22:35:51] "GET /attendance_status?date=2025-05-01 HTTP/1.1" 200 -
+2025-05-01 22:35:52,211 - INFO - 127.0.0.1 - - [01/May/2025 22:35:52] "GET /attendance_status?date=2025-05-01 HTTP/1.1" 200 -
+2025-05-01 22:35:58,520 - INFO - Email successfully sent to abhaychauhan5051a@gmail.com
+2025-05-01 22:35:58,741 - INFO - 127.0.0.1 - - [01/May/2025 22:35:58] "POST /attendance HTTP/1.1" 200 -
+2025-05-01 22:35:58,780 - INFO - 127.0.0.1 - - [01/May/2025 22:35:58] "POST /attendance HTTP/1.1" 200 -
+2025-05-01 22:35:59,138 - INFO - 127.0.0.1 - - [01/May/2025 22:35:59] "GET /attendance_status?date=2025-05-01 HTTP/1.1" 200 -
+2025-05-01 22:36:01,085 - INFO - Email successfully sent to abhaychauhan5051a@gmail.com
+2025-05-01 22:36:01,340 - INFO - 127.0.0.1 - - [01/May/2025 22:36:01] "POST /attendance HTTP/1.1" 200 -
+2025-05-01 22:36:01,664 - INFO - 127.0.0.1 - - [01/May/2025 22:36:01] "GET /attendance_status?date=2025-05-01 HTTP/1.1" 200 -
+2025-05-01 22:38:06,693 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-05-01 22:38:06,695 - INFO - [33mPress CTRL+C to quit[0m
+2025-05-01 22:38:06,696 - INFO -  * Restarting with stat
+2025-05-01 22:38:17,427 - WARNING -  * Debugger is active!
+2025-05-01 22:38:17,430 - INFO -  * Debugger PIN: 900-711-091
+2025-05-01 22:38:17,738 - INFO - 127.0.0.1 - - [01/May/2025 22:38:17] "[36mGET / HTTP/1.1[0m" 304 -
+2025-05-01 22:38:18,107 - INFO - 127.0.0.1 - - [01/May/2025 22:38:18] "[36mGET /style.css HTTP/1.1[0m" 304 -
+2025-05-01 22:38:18,110 - INFO - 127.0.0.1 - - [01/May/2025 22:38:18] "[36mGET /script.js HTTP/1.1[0m" 304 -
+2025-05-01 22:38:18,358 - INFO - 127.0.0.1 - - [01/May/2025 22:38:18] "GET /is_admin HTTP/1.1" 200 -
+2025-05-01 22:38:18,515 - INFO - 127.0.0.1 - - [01/May/2025 22:38:18] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-05-01 22:38:18,515 - INFO - 127.0.0.1 - - [01/May/2025 22:38:18] "GET /attendance_status?date=2025-05-01 HTTP/1.1" 200 -
+2025-05-01 22:38:34,477 - INFO - 127.0.0.1 - - [01/May/2025 22:38:34] "POST /login HTTP/1.1" 200 -
+2025-05-01 22:38:38,506 - INFO - 127.0.0.1 - - [01/May/2025 22:38:38] "POST /manual_attendance HTTP/1.1" 200 -
+2025-05-01 22:38:38,828 - INFO - 127.0.0.1 - - [01/May/2025 22:38:38] "GET /attendance_status?date=2025-05-01 HTTP/1.1" 200 -
+2025-05-01 22:38:49,842 - INFO - Email successfully sent to abhaychauhan5051a@gmail.com
+2025-05-01 22:38:50,094 - INFO - 127.0.0.1 - - [01/May/2025 22:38:50] "POST /attendance HTTP/1.1" 200 -
+2025-05-01 22:38:50,411 - INFO - 127.0.0.1 - - [01/May/2025 22:38:50] "GET /attendance_status?date=2025-05-01 HTTP/1.1" 200 -
+2025-05-01 22:38:58,608 - INFO - 127.0.0.1 - - [01/May/2025 22:38:58] "POST /attendance HTTP/1.1" 200 -
+2025-05-01 22:39:00,334 - INFO - 127.0.0.1 - - [01/May/2025 22:39:00] "[36mGET / HTTP/1.1[0m" 304 -
+2025-05-01 22:39:00,733 - INFO - 127.0.0.1 - - [01/May/2025 22:39:00] "[36mGET /style.css HTTP/1.1[0m" 304 -
+2025-05-01 22:39:00,738 - INFO - 127.0.0.1 - - [01/May/2025 22:39:00] "[36mGET /script.js HTTP/1.1[0m" 304 -
+2025-05-01 22:39:00,951 - INFO - 127.0.0.1 - - [01/May/2025 22:39:00] "GET /is_admin HTTP/1.1" 200 -
+2025-05-01 22:39:01,074 - INFO - 127.0.0.1 - - [01/May/2025 22:39:01] "GET /attendance_status?date=2025-05-01 HTTP/1.1" 200 -
+2025-05-01 22:39:05,252 - INFO - Email successfully sent to abhaychauhan5051a@gmail.com
+2025-05-01 22:39:05,521 - INFO - 127.0.0.1 - - [01/May/2025 22:39:05] "POST /attendance HTTP/1.1" 200 -
+2025-05-01 22:39:16,908 - INFO - Email successfully sent to abhaychauhan5051a@gmail.com
+2025-05-01 22:39:17,196 - INFO - 127.0.0.1 - - [01/May/2025 22:39:17] "POST /attendance HTTP/1.1" 200 -
+2025-05-01 22:39:17,513 - INFO - 127.0.0.1 - - [01/May/2025 22:39:17] "GET /attendance_status?date=2025-05-01 HTTP/1.1" 200 -
+2025-05-01 22:39:30,243 - INFO -  * Detected change in 'c:\\facerecogination\\face_utils.py', reloading
+2025-05-01 22:39:31,730 - INFO -  * Restarting with stat
+2025-05-01 22:39:55,077 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-05-01 22:39:55,077 - INFO - [33mPress CTRL+C to quit[0m
+2025-05-01 22:39:55,080 - INFO -  * Restarting with stat
+2025-05-01 22:40:05,894 - WARNING -  * Debugger is active!
+2025-05-01 22:40:05,899 - INFO -  * Debugger PIN: 900-711-091
+2025-05-01 22:40:06,147 - INFO - 127.0.0.1 - - [01/May/2025 22:40:06] "[36mGET / HTTP/1.1[0m" 304 -
+2025-05-01 22:40:06,513 - INFO - 127.0.0.1 - - [01/May/2025 22:40:06] "[36mGET /style.css HTTP/1.1[0m" 304 -
+2025-05-01 22:40:06,515 - INFO - 127.0.0.1 - - [01/May/2025 22:40:06] "[36mGET /script.js HTTP/1.1[0m" 304 -
+2025-05-01 22:40:06,760 - INFO - 127.0.0.1 - - [01/May/2025 22:40:06] "GET /is_admin HTTP/1.1" 200 -
+2025-05-01 22:40:06,902 - INFO - 127.0.0.1 - - [01/May/2025 22:40:06] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-05-01 22:40:06,902 - INFO - 127.0.0.1 - - [01/May/2025 22:40:06] "GET /attendance_status?date=2025-05-01 HTTP/1.1" 200 -
+2025-05-01 22:40:16,436 - INFO - 127.0.0.1 - - [01/May/2025 22:40:16] "POST /login HTTP/1.1" 200 -
+2025-05-01 22:40:28,083 - INFO - Email successfully sent to abhaychauhan5051a@gmail.com
+2025-05-01 22:40:28,361 - INFO - 127.0.0.1 - - [01/May/2025 22:40:28] "POST /attendance HTTP/1.1" 200 -
+2025-05-01 22:40:28,680 - INFO - 127.0.0.1 - - [01/May/2025 22:40:28] "GET /attendance_status?date=2025-05-01 HTTP/1.1" 200 -
+2025-05-01 22:40:43,628 - INFO - 127.0.0.1 - - [01/May/2025 22:40:43] "POST /attendance HTTP/1.1" 200 -
+2025-05-01 22:41:04,645 - INFO - Email successfully sent to abhaychauhan5051a@gmail.com
+2025-05-01 22:41:04,863 - INFO - 127.0.0.1 - - [01/May/2025 22:41:04] "POST /attendance HTTP/1.1" 200 -
+2025-05-01 22:41:04,903 - INFO - 127.0.0.1 - - [01/May/2025 22:41:04] "POST /attendance HTTP/1.1" 200 -
+2025-05-01 22:41:05,523 - INFO - 127.0.0.1 - - [01/May/2025 22:41:05] "GET /attendance_status?date=2025-05-01 HTTP/1.1" 200 -
+2025-05-01 22:41:06,201 - INFO - Email successfully sent to abhaychauhan5051a@gmail.com
+2025-05-01 22:41:06,777 - INFO - 127.0.0.1 - - [01/May/2025 22:41:06] "POST /attendance HTTP/1.1" 200 -
+2025-05-01 22:41:07,098 - INFO - 127.0.0.1 - - [01/May/2025 22:41:07] "GET /attendance_status?date=2025-05-01 HTTP/1.1" 200 -
+2025-05-01 22:41:08,103 - INFO - 127.0.0.1 - - [01/May/2025 22:41:08] "POST /attendance HTTP/1.1" 200 -
+2025-05-01 22:45:49,059 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-05-01 22:45:49,060 - INFO - [33mPress CTRL+C to quit[0m
+2025-05-01 22:45:49,063 - INFO -  * Restarting with stat
+2025-05-01 22:46:00,214 - WARNING -  * Debugger is active!
+2025-05-01 22:46:00,223 - INFO -  * Debugger PIN: 900-711-091
+2025-05-01 22:46:29,775 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-05-01 22:46:29,777 - INFO - [33mPress CTRL+C to quit[0m
+2025-05-01 22:46:29,779 - INFO -  * Restarting with stat
+2025-05-01 22:46:40,203 - WARNING -  * Debugger is active!
+2025-05-01 22:46:40,205 - INFO -  * Debugger PIN: 900-711-091
+2025-05-01 22:46:40,476 - INFO - 127.0.0.1 - - [01/May/2025 22:46:40] "[36mGET / HTTP/1.1[0m" 304 -
+2025-05-01 22:46:40,835 - INFO - 127.0.0.1 - - [01/May/2025 22:46:40] "GET /style.css HTTP/1.1" 200 -
+2025-05-01 22:46:40,835 - INFO - 127.0.0.1 - - [01/May/2025 22:46:40] "[36mGET /script.js HTTP/1.1[0m" 304 -
+2025-05-01 22:46:41,084 - INFO - 127.0.0.1 - - [01/May/2025 22:46:41] "GET /is_admin HTTP/1.1" 200 -
+2025-05-01 22:46:41,224 - INFO - 127.0.0.1 - - [01/May/2025 22:46:41] "GET /attendance_status?date=2025-05-01 HTTP/1.1" 200 -
+2025-05-01 22:46:41,224 - INFO - 127.0.0.1 - - [01/May/2025 22:46:41] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-05-01 22:46:47,717 - INFO - 127.0.0.1 - - [01/May/2025 22:46:47] "GET /users HTTP/1.1" 200 -
+2025-05-01 22:46:48,037 - INFO - 127.0.0.1 - - [01/May/2025 22:46:48] "[33mGET /registered_faces/abhaysingh.jpg HTTP/1.1[0m" 404 -
+2025-05-01 22:46:50,970 - INFO - 127.0.0.1 - - [01/May/2025 22:46:50] "GET /attendance_log HTTP/1.1" 200 -
+2025-05-01 22:47:02,617 - INFO - 127.0.0.1 - - [01/May/2025 22:47:02] "[33mDELETE /user/Abhay HTTP/1.1[0m" 404 -
+2025-05-01 22:47:12,257 - INFO - 127.0.0.1 - - [01/May/2025 22:47:12] "POST /login HTTP/1.1" 200 -
+2025-05-01 22:47:31,257 - INFO - Email successfully sent to abhaychauhan5051a@gmail.com
+2025-05-01 22:47:31,526 - INFO - 127.0.0.1 - - [01/May/2025 22:47:31] "POST /attendance HTTP/1.1" 200 -
+2025-05-01 22:47:31,538 - INFO - 127.0.0.1 - - [01/May/2025 22:47:31] "GET /attendance_status?date=2025-05-01 HTTP/1.1" 200 -
+2025-05-01 22:47:44,563 - INFO - Email successfully sent to abhaychauhan5051a@gmail.com
+2025-05-01 22:47:44,836 - INFO - 127.0.0.1 - - [01/May/2025 22:47:44] "POST /attendance HTTP/1.1" 200 -
+2025-05-01 22:47:45,151 - INFO - 127.0.0.1 - - [01/May/2025 22:47:45] "GET /attendance_status?date=2025-05-01 HTTP/1.1" 200 -
+2025-05-01 22:47:46,585 - INFO - Email successfully sent to abhaychauhan5051a@gmail.com
+2025-05-01 22:47:46,854 - INFO - 127.0.0.1 - - [01/May/2025 22:47:46] "POST /attendance HTTP/1.1" 200 -
+2025-05-01 22:47:47,168 - INFO - 127.0.0.1 - - [01/May/2025 22:47:47] "GET /attendance_status?date=2025-05-01 HTTP/1.1" 200 -
+2025-05-01 22:51:06,520 - INFO - 127.0.0.1 - - [01/May/2025 22:51:06] "[36mGET / HTTP/1.1[0m" 304 -
+2025-05-01 22:51:06,571 - INFO - 127.0.0.1 - - [01/May/2025 22:51:06] "GET /style.css HTTP/1.1" 200 -
+2025-05-01 22:51:06,772 - INFO - 127.0.0.1 - - [01/May/2025 22:51:06] "[36mGET /script.js HTTP/1.1[0m" 304 -
+2025-05-01 22:51:07,091 - INFO - 127.0.0.1 - - [01/May/2025 22:51:07] "GET /is_admin HTTP/1.1" 200 -
+2025-05-01 22:51:07,091 - INFO - 127.0.0.1 - - [01/May/2025 22:51:07] "GET /attendance_status?date=2025-05-01 HTTP/1.1" 200 -
+2025-05-01 22:51:09,336 - INFO - 127.0.0.1 - - [01/May/2025 22:51:09] "GET /users HTTP/1.1" 200 -
+2025-05-01 22:51:09,655 - INFO - 127.0.0.1 - - [01/May/2025 22:51:09] "[33mGET /registered_faces/abhaysingh.jpg HTTP/1.1[0m" 404 -
+2025-05-01 22:51:16,602 - INFO -  * Detected change in 'c:\\facerecogination\\app.py', reloading
+2025-05-01 22:51:17,989 - INFO -  * Restarting with stat
+2025-05-01 22:51:37,107 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-05-01 22:51:37,107 - INFO - [33mPress CTRL+C to quit[0m
+2025-05-01 22:51:37,107 - INFO -  * Restarting with stat
+2025-05-01 22:51:49,130 - WARNING -  * Debugger is active!
+2025-05-01 22:51:49,141 - INFO -  * Debugger PIN: 900-711-091
+2025-05-01 22:51:49,442 - INFO - 127.0.0.1 - - [01/May/2025 22:51:49] "[36mGET / HTTP/1.1[0m" 304 -
+2025-05-01 22:51:49,500 - INFO - 127.0.0.1 - - [01/May/2025 22:51:49] "[36mGET /style.css HTTP/1.1[0m" 304 -
+2025-05-01 22:51:49,505 - INFO - 127.0.0.1 - - [01/May/2025 22:51:49] "[36mGET /script.js HTTP/1.1[0m" 304 -
+2025-05-01 22:51:50,071 - INFO - 127.0.0.1 - - [01/May/2025 22:51:50] "GET /is_admin HTTP/1.1" 200 -
+2025-05-01 22:51:50,077 - INFO - 127.0.0.1 - - [01/May/2025 22:51:50] "GET /attendance_status?date=2025-05-01 HTTP/1.1" 200 -
+2025-05-01 22:51:50,158 - INFO - 127.0.0.1 - - [01/May/2025 22:51:50] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-05-01 22:51:57,352 - INFO - 127.0.0.1 - - [01/May/2025 22:51:57] "POST /login HTTP/1.1" 200 -
+2025-05-01 22:51:59,743 - INFO - 127.0.0.1 - - [01/May/2025 22:51:59] "GET /users HTTP/1.1" 200 -
+2025-05-01 22:52:00,055 - INFO - 127.0.0.1 - - [01/May/2025 22:52:00] "[33mGET /registered_faces/abhaysingh.jpg HTTP/1.1[0m" 404 -
+2025-05-01 22:52:42,494 - INFO - 127.0.0.1 - - [01/May/2025 22:52:42] "GET /attendance_log HTTP/1.1" 200 -
+2025-05-01 22:52:44,509 - INFO - 127.0.0.1 - - [01/May/2025 22:52:44] "GET /users HTTP/1.1" 200 -
+2025-05-01 22:52:44,824 - INFO - 127.0.0.1 - - [01/May/2025 22:52:44] "[33mGET /registered_faces/abhaysingh.jpg HTTP/1.1[0m" 404 -
+2025-05-01 22:53:51,760 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-05-01 22:53:51,760 - INFO - [33mPress CTRL+C to quit[0m
+2025-05-01 22:53:51,766 - INFO -  * Restarting with stat
+2025-05-01 22:54:05,448 - WARNING -  * Debugger is active!
+2025-05-01 22:54:05,453 - INFO -  * Debugger PIN: 900-711-091
+2025-05-01 22:54:05,660 - INFO - 127.0.0.1 - - [01/May/2025 22:54:05] "[36mGET / HTTP/1.1[0m" 304 -
+2025-05-01 22:54:06,042 - INFO - 127.0.0.1 - - [01/May/2025 22:54:06] "GET /style.css HTTP/1.1" 200 -
+2025-05-01 22:54:06,043 - INFO - 127.0.0.1 - - [01/May/2025 22:54:06] "[36mGET /script.js HTTP/1.1[0m" 304 -
+2025-05-01 22:54:06,277 - INFO - 127.0.0.1 - - [01/May/2025 22:54:06] "GET /is_admin HTTP/1.1" 200 -
+2025-05-01 22:54:06,426 - INFO - 127.0.0.1 - - [01/May/2025 22:54:06] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-05-01 22:54:06,426 - INFO - 127.0.0.1 - - [01/May/2025 22:54:06] "GET /attendance_status?date=2025-05-01 HTTP/1.1" 200 -
+2025-05-01 22:54:19,642 - INFO - 127.0.0.1 - - [01/May/2025 22:54:19] "POST /login HTTP/1.1" 200 -
+2025-05-01 22:54:21,211 - INFO - 127.0.0.1 - - [01/May/2025 22:54:21] "GET /users HTTP/1.1" 200 -
+2025-05-01 22:54:21,544 - INFO - 127.0.0.1 - - [01/May/2025 22:54:21] "[33mGET /registered_faces/abhaysingh.jpg HTTP/1.1[0m" 404 -
+2025-05-01 22:54:40,949 - INFO - Email successfully sent to abhaychauhan5051a@gmail.com
+2025-05-01 22:54:41,222 - INFO - 127.0.0.1 - - [01/May/2025 22:54:41] "POST /attendance HTTP/1.1" 200 -
+2025-05-01 22:54:41,541 - INFO - 127.0.0.1 - - [01/May/2025 22:54:41] "GET /attendance_status?date=2025-05-01 HTTP/1.1" 200 -
+2025-05-01 22:54:45,290 - INFO - 127.0.0.1 - - [01/May/2025 22:54:45] "POST /manual_attendance HTTP/1.1" 200 -
+2025-05-01 22:54:45,609 - INFO - 127.0.0.1 - - [01/May/2025 22:54:45] "GET /attendance_status?date=2025-05-01 HTTP/1.1" 200 -
+2025-05-01 22:54:53,525 - INFO - Email successfully sent to abhaychauhan5051a@gmail.com
+2025-05-01 22:54:54,109 - INFO - 127.0.0.1 - - [01/May/2025 22:54:54] "POST /attendance HTTP/1.1" 200 -
+2025-05-01 22:54:54,694 - INFO - 127.0.0.1 - - [01/May/2025 22:54:54] "GET /attendance_status?date=2025-05-01 HTTP/1.1" 200 -
+2025-05-01 22:54:57,662 - INFO - Email successfully sent to abhaychauhan5051a@gmail.com
+2025-05-01 22:54:57,942 - INFO - 127.0.0.1 - - [01/May/2025 22:54:57] "POST /attendance HTTP/1.1" 200 -
+2025-05-01 22:54:58,281 - INFO - 127.0.0.1 - - [01/May/2025 22:54:58] "GET /attendance_status?date=2025-05-01 HTTP/1.1" 200 -
+2025-05-01 22:55:00,074 - INFO - Email successfully sent to abhaychauhan5051a@gmail.com
+2025-05-01 22:55:00,613 - INFO - 127.0.0.1 - - [01/May/2025 22:55:00] "POST /attendance HTTP/1.1" 200 -
+2025-05-01 22:55:00,960 - INFO - 127.0.0.1 - - [01/May/2025 22:55:00] "GET /attendance_status?date=2025-05-01 HTTP/1.1" 200 -
+2025-05-01 22:55:02,876 - INFO - Email successfully sent to abhaychauhan5051a@gmail.com
+2025-05-01 22:55:03,150 - INFO - 127.0.0.1 - - [01/May/2025 22:55:03] "POST /attendance HTTP/1.1" 200 -
+2025-05-01 22:55:03,476 - INFO - 127.0.0.1 - - [01/May/2025 22:55:03] "GET /attendance_status?date=2025-05-01 HTTP/1.1" 200 -
+2025-05-01 22:55:05,239 - INFO - Email successfully sent to abhaychauhan5051a@gmail.com
+2025-05-01 22:55:05,507 - INFO - 127.0.0.1 - - [01/May/2025 22:55:05] "POST /attendance HTTP/1.1" 200 -
+2025-05-01 22:55:05,826 - INFO - 127.0.0.1 - - [01/May/2025 22:55:05] "GET /attendance_status?date=2025-05-01 HTTP/1.1" 200 -
+2025-05-01 22:55:30,997 - INFO - 127.0.0.1 - - [01/May/2025 22:55:30] "GET /attendance_log HTTP/1.1" 200 -
+2025-05-01 22:55:44,090 - INFO - 127.0.0.1 - - [01/May/2025 22:55:44] "GET /download_attendance?date=2025-04-30 HTTP/1.1" 200 -
+2025-05-01 22:58:54,030 - INFO -  * Detected change in 'c:\\facerecogination\\app.py', reloading
+2025-05-01 22:58:56,173 - INFO -  * Restarting with stat
