@@ -331,3 +331,21 @@
 2025-05-01 22:55:44,090 - INFO - 127.0.0.1 - - [01/May/2025 22:55:44] "GET /download_attendance?date=2025-04-30 HTTP/1.1" 200 -
 2025-05-01 22:58:54,030 - INFO -  * Detected change in 'c:\\facerecogination\\app.py', reloading
 2025-05-01 22:58:56,173 - INFO -  * Restarting with stat
+2025-05-02 07:35:13,614 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-05-02 07:35:13,616 - INFO - [33mPress CTRL+C to quit[0m
+2025-05-02 07:35:13,618 - INFO -  * Restarting with stat
+2025-05-02 07:35:26,869 - WARNING -  * Debugger is active!
+2025-05-02 07:35:26,869 - INFO -  * Debugger PIN: 900-711-091
+2025-05-02 07:35:41,572 - INFO - 127.0.0.1 - - [02/May/2025 07:35:41] "[36mGET / HTTP/1.1[0m" 304 -
+2025-05-02 07:35:41,647 - INFO - 127.0.0.1 - - [02/May/2025 07:35:41] "[36mGET /style.css HTTP/1.1[0m" 304 -
+2025-05-02 07:35:41,695 - INFO - 127.0.0.1 - - [02/May/2025 07:35:41] "[36mGET /script.js HTTP/1.1[0m" 304 -
+2025-05-02 07:35:42,316 - INFO - 127.0.0.1 - - [02/May/2025 07:35:42] "GET /is_admin HTTP/1.1" 200 -
+2025-05-02 07:35:42,324 - INFO - 127.0.0.1 - - [02/May/2025 07:35:42] "GET /attendance_status?date=2025-05-02 HTTP/1.1" 200 -
+2025-05-02 07:35:42,430 - INFO - 127.0.0.1 - - [02/May/2025 07:35:42] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-05-02 07:36:14,209 - INFO - 127.0.0.1 - - [02/May/2025 07:36:14] "POST /login HTTP/1.1" 200 -
+2025-05-02 07:36:17,267 - INFO - 127.0.0.1 - - [02/May/2025 07:36:17] "GET /users HTTP/1.1" 200 -
+2025-05-02 07:36:17,501 - INFO - 127.0.0.1 - - [02/May/2025 07:36:17] "[33mGET /registered_faces/abhaysingh.jpg HTTP/1.1[0m" 404 -
+2025-05-02 07:36:18,850 - INFO - 127.0.0.1 - - [02/May/2025 07:36:18] "GET /attendance_log HTTP/1.1" 200 -
+2025-05-02 07:36:22,115 - INFO - 127.0.0.1 - - [02/May/2025 07:36:22] "GET /users HTTP/1.1" 200 -
+2025-05-02 07:36:22,351 - INFO - 127.0.0.1 - - [02/May/2025 07:36:22] "[33mGET /registered_faces/abhaysingh.jpg HTTP/1.1[0m" 404 -
