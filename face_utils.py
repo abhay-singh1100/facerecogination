@@ -8,6 +8,7 @@ import smtplib
 from email.message import EmailMessage
 import logging
 import dlib
+import csv
 
 # Configure logging
 logging.basicConfig(
@@ -48,13 +49,13 @@ def mark_attendance(name):
     date = datetime.now().strftime('%Y-%m-%d')
     time = datetime.now().strftime('%H:%M:%S')
     attendance_file = 'attendance.csv'
-    with open(attendance_file, 'a') as f:
-        f.write(f"{name},{date},{time},present\n")
-    # Fetch email from user_data.csv
-    with open('user_data.csv', 'r') as file:
-        for line in file:
+    with open('user_data.csv', 'r') as user_file:
+        for line in user_file:
             if line.startswith(name + ','):
-                _, email, _ = line.strip().split(',')
+                _, email, rollno = line.strip().split(',')
+                with open(attendance_file, 'a', newline='') as f:
+                    writer = csv.writer(f)
+                    writer.writerow([name, email, rollno, date, time, 'present'])
                 send_email_notification(email, name)
                 break
 

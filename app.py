@@ -158,20 +158,19 @@ def download_attendance():
     date = request.args.get('date')
     if not os.path.exists('attendance.csv'):
         return jsonify({'success': False, 'error': 'Attendance log not found'}), 404
-    if not date:
-        return send_from_directory('.', 'attendance.csv', as_attachment=True)
-    # Filter by date
-    filtered = []
+
+    temp_path = 'attendance_with_headers.csv'
     with open('attendance.csv', 'r') as f:
-        for line in f:
-            parts = line.strip().split(',')
-            if len(parts) >= 4 and parts[1] == date:
-                filtered.append(line)
-    if not filtered:
-        return jsonify({'success': False, 'error': 'No records for this date'}), 404
-    temp_path = f'attendance_{date}.csv'
+        lines = f.readlines()
+
     with open(temp_path, 'w') as f:
-        f.writelines(filtered)
+        f.write('Name,Email,Roll Number,Date,Time,Status\n')  # Add column headers
+        if date:
+            filtered = [line for line in lines if len(line.split(',')) >= 4 and line.split(',')[3] == date]
+            f.writelines(filtered)
+        else:
+            f.writelines(lines)
+
     resp = send_from_directory('.', temp_path, as_attachment=True)
     import threading
     threading.Timer(2.0, lambda: os.remove(temp_path)).start()  # Clean up temp file
