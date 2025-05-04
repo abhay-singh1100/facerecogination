@@ -51,8 +51,9 @@ def mark_attendance(name):
     attendance_file = 'attendance.csv'
     with open('user_data.csv', 'r') as user_file:
         for line in user_file:
-            if line.startswith(name + ','):
-                _, email, rollno = line.strip().split(',')
+            parts = line.strip().split(',')
+            if len(parts) >= 3 and parts[0] == name:
+                _, email, rollno = parts[:3]
                 with open(attendance_file, 'a', newline='') as f:
                     writer = csv.writer(f)
                     writer.writerow([name, email, rollno, date, time, 'present'])
@@ -85,8 +86,8 @@ def get_attendance_status(date):
         with open(ATTENDANCE_FILE, 'r') as f:
             for line in f:
                 parts = line.strip().split(',')
-                if len(parts) >= 4 and parts[1] == date:
-                    status[parts[0]] = parts[3]
+                if len(parts) >= 6 and parts[3] == date:
+                    status[parts[0]] = parts[5]
     return status
 
 def load_registered_faces():

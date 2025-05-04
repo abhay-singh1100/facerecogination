@@ -58,7 +58,9 @@
         </div>
         <div id="users" class="tab-content card">
             <h2>Registered Users</h2>
-            <div id="userList"></div>
+            <div id="userList" class="user-list">
+                <!-- User items will be dynamically loaded here -->
+            </div>
         </div>
         <div id="log" class="tab-content card">
             <h2>Attendance Log</h2>
@@ -86,6 +88,68 @@
         <span>Admin Mode</span>
         <button id="adminLogoutBtn" title="Logout"><i class="fa-solid fa-right-from-bracket"></i> Logout</button>
     </div>
+
+    <!-- Add a dedicated page for editing user details -->
+    <div id="editUserPage" class="edit-user-page" style="display:none;">
+        <h2>Edit User Details</h2>
+        <form id="editUserPageForm">
+            <label for="editPageUserName">Name:</label>
+            <input type="text" id="editPageUserName" name="name" readonly>
+
+            <label for="editPageUserEmail">Email:</label>
+            <input type="email" id="editPageUserEmail" name="email" required>
+
+            <label for="editPageUserRollno">Roll Number:</label>
+            <input type="text" id="editPageUserRollno" name="rollno" required>
+
+            <button type="submit" class="btn">Save Changes</button>
+            <button type="button" id="cancelEditUserPage" class="btn btn-secondary">Cancel</button>
+        </form>
+    </div>
+
     <script src="script.js"></script>
+    <script>
+        // Show and hide the edit user page
+        const editUserPage = document.getElementById('editUserPage');
+        const editUserPageForm = document.getElementById('editUserPageForm');
+        const cancelEditUserPage = document.getElementById('cancelEditUserPage');
+
+        function showEditUserPage(name, email, rollno) {
+            document.getElementById('editPageUserName').value = name;
+            document.getElementById('editPageUserEmail').value = email;
+            document.getElementById('editPageUserRollno').value = rollno;
+            editUserPage.style.display = 'block';
+        }
+
+        cancelEditUserPage.onclick = () => {
+            editUserPage.style.display = 'none';
+        };
+
+        // Handle the form submission for editing user details
+        editUserPageForm.onsubmit = async (event) => {
+            event.preventDefault();
+            const name = document.getElementById('editPageUserName').value;
+            const email = document.getElementById('editPageUserEmail').value;
+            const rollno = document.getElementById('editPageUserRollno').value;
+
+            try {
+                const res = await fetch('/edit_user', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ name, email, rollno })
+                });
+                const data = await res.json();
+                if (data.success) {
+                    showToast(data.message);
+                    loadUsers(); // Refresh the user list
+                    editUserPage.style.display = 'none';
+                } else {
+                    showToast('Edit failed: ' + (data.error || 'Unknown error'));
+                }
+            } catch (e) {
+                showToast('Edit failed: Network error.');
+            }
+        };
+    </script>
 </body>
 </html>

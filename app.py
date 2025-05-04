@@ -80,7 +80,7 @@ def attendance():
 
 @app.route('/attendance_log', methods=['GET'])
 def attendance_log():
-    # Return attendance log as JSON (support new format)
+    # Return attendance log as JSON (support new format)3
     records = []
     if os.path.exists('attendance.csv'):
         with open('attendance.csv', 'r') as f:
@@ -194,6 +194,37 @@ def attendance_analytics():
         'percent': round(percent, 2),
         'status': status
     })
+
+@app.route('/edit_user', methods=['POST'])
+def edit_user():
+    data = request.json
+    name = data.get('name')
+    new_email = data.get('email')
+    new_rollno = data.get('rollno')
+
+    if not name or not new_email or not new_rollno:
+        return jsonify({'success': False, 'error': 'Missing required fields'}), 400
+
+    updated = False
+    user_data_file = 'user_data.csv'
+    temp_file = 'user_data_temp.csv'
+
+    with open(user_data_file, 'r') as infile, open(temp_file, 'w', newline='') as outfile:
+        reader = csv.reader(infile)
+        writer = csv.writer(outfile)
+        for row in reader:
+            if row[0] == name:
+                writer.writerow([name, new_email, new_rollno])
+                updated = True
+            else:
+                writer.writerow(row)
+
+    if updated:
+        os.replace(temp_file, user_data_file)
+        return jsonify({'success': True, 'message': 'User details updated successfully'})
+    else:
+        os.remove(temp_file)
+        return jsonify({'success': False, 'error': 'User not found'}), 404
 
 if __name__ == '__main__':
     app.run(debug=True)

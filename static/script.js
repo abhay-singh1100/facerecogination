@@ -35,6 +35,34 @@ function showToast(msg, duration = 2500) {
     setTimeout(() => toast.classList.remove('show'), duration);
 }
 
+// Add edit functionality to user list
+async function editUser(name, email, rollno) {
+    const newEmail = prompt(`Edit email for ${name}:`, email);
+    const newRollno = prompt(`Edit roll number for ${name}:`, rollno);
+
+    if (!newEmail || !newRollno) {
+        showToast('Edit cancelled or invalid input.');
+        return;
+    }
+
+    try {
+        const res = await fetch('/edit_user', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ name, email: newEmail, rollno: newRollno })
+        });
+        const data = await res.json();
+        if (data.success) {
+            showToast(data.message);
+            loadUsers(); // Refresh the user list
+        } else {
+            showToast('Edit failed: ' + (data.error || 'Unknown error'));
+        }
+    } catch (e) {
+        showToast('Edit failed: Network error.');
+    }
+}
+
 // User management
 async function loadUsers() {
     const userList = document.getElementById('userList');
@@ -52,8 +80,18 @@ async function loadUsers() {
                     <span class="user-name">${user.name}</span>
                     <span class="user-email">${user.email}</span>
                     <span class="user-rollno">${user.rollno}</span>
+                    <button class="edit-btn" data-name="${user.name}" data-email="${user.email}" data-rollno="${user.rollno}"><i class="fa fa-edit"></i> Edit</button>
                     <button class="delete-btn" data-name="${user.name}"><i class="fa fa-trash"></i> Delete</button>`;
                 userList.appendChild(div);
+            });
+            // Add edit listeners
+            userList.querySelectorAll('.edit-btn').forEach(btn => {
+                btn.onclick = () => {
+                    const name = btn.dataset.name;
+                    const email = btn.dataset.email;
+                    const rollno = btn.dataset.rollno;
+                    editUser(name, email, rollno);
+                };
             });
             // Add delete listeners
             userList.querySelectorAll('.delete-btn').forEach(btn => {
@@ -174,6 +212,7 @@ async function captureAndSendAttendance() {
             if (data.names && data.names.length > 0) {
                 resultDiv.innerHTML = `Attendance marked for: <b>${data.names.join(', ')}</b>`;
                 showToast('Attendance marked!');
+                // Refresh attendance status for the selected date
                 loadAttendanceStatus(attendanceDateInput.value);
             } else {
                 // Check if any faces were detected but not real
