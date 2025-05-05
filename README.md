@@ -32,15 +32,17 @@ A secure and efficient face recognition-based attendance management system built
 
 ```
 ├── app.py                 # Main Flask application
-├── face_utils.py         # Face recognition and utils
-├── requirements.txt      # Project dependencies
-├── attendance.csv        # Attendance records
-├── registered_faces/     # Stored face images
-└── static/              # Frontend assets
-    ├── index.html
-    ├── script.js
-    ├── style.css
-    └── images/
+├── face_utils.py          # Face recognition and utility functions
+├── requirements.txt       # Project dependencies
+├── attendance.csv         # Attendance records
+├── database.db            # SQLite database for user and attendance data
+├── registered_faces/      # Stored face images
+├── static/                # Frontend assets
+│   ├── index.html         # Updated GUI with analytics section
+│   ├── script.js          # JavaScript logic for analytics and Chart.js integration
+│   ├── style.css          # Styling for the application
+│   └── images/            # Static images
+└── README.md              # Project documentation
 ```
 
 ## Usage
@@ -75,15 +77,50 @@ A secure and efficient face recognition-based attendance management system built
 - Session management
 - Secure image handling
 
+## New Features Added
+
+### Attendance Analytics
+- Added a dedicated endpoint `/attendance_analytics` to calculate and display attendance statistics.
+- Displays total users, present count, absent count, and present percentage.
+- Integrated **Chart.js** to visualize attendance data in a doughnut chart format.
+
+### Enhanced GUI
+- Updated the GUI to include a section for attendance analytics.
+- Displays attendance statistics and a dynamic chart for better visualization.
+
+### Liveness Detection
+- Improved liveness detection using **Mediapipe's Face Mesh** to detect eye blinks.
+- Prevents spoofing by ensuring the detected face is real.
+
+### Export Attendance Data
+- Enhanced the CSV export functionality to fetch data directly from the database.
+- Ensures compatibility with tools like Excel by formatting the date column correctly.
+
+### Security Enhancements
+- Added admin authentication for sensitive operations.
+- Improved session management and secure handling of user data.
+
+## How to Use Attendance Analytics
+
+1. Start the server:
+   ```bash
+   python app.py
+   ```
+2. Access the application at `http://localhost:5000`.
+3. View attendance analytics on the dashboard:
+   - Displays total users, present count, absent count, and present percentage.
+   - Visualized using a dynamic doughnut chart.
+
 ## API Endpoints
 
 - `/register` - Register new users
 - `/attendance` - Mark attendance
 - `/attendance_log` - View attendance records
 - `/attendance_status` - Check daily attendance status
-- `/attendance_analytics` - View attendance statistics
+- `/attendance_analytics` - View attendance statistics and analytics.
 - `/manual_attendance` - Admin manual attendance marking
 - `/users` - Manage registered users
+- `/download_attendance` - Export attendance data as CSV.
 
 ## Configuration
 
