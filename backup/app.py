@@ -3,7 +3,7 @@ import numpy as np
 import cv2
 import base64
 import os
-from face_utils import save_face_image, recognize_faces_and_liveness_sequence, mark_attendance, get_attendance_status, mark_attendance_status
+from face_utils import save_face_image, recognize_faces_and_liveness_sequence, mark_attendance, get_attendance_status, mark_attendance_status, save_user_data, fetch_all_users, fetch_user_by_name, delete_user
 from datetime import datetime
 import csv
 
@@ -39,15 +39,6 @@ def read_image_from_request(img_data_b64):
     nparr = np.frombuffer(img_bytes, np.uint8)
     img = cv2.imdecode(nparr, cv2.IMREAD_COLOR)
     return img
-
-def save_user_data(name, email, rollno):
-    user_data_file = 'user_data.csv'
-    file_exists = os.path.exists(user_data_file)
-    with open(user_data_file, mode='a', newline='') as file:
-        writer = csv.writer(file)
-        if not file_exists:
-            writer.writerow(['Name', 'Email', 'Roll Number'])
-        writer.writerow([name, email, rollno])
 
 @app.route('/register', methods=['POST'])
 def register():
@@ -134,23 +125,20 @@ def manual_attendance():
 def users():
     # List registered users (names, emails, roll numbers, and image filenames)
     users = []
-    with open('user_data.csv', 'r') as file:
-        next(file)  # Skip the header row
-        for line in file:
-            name, email, rollno = line.strip().split(',')
-            image_filename = f"{name}.jpg" if os.path.exists(os.path.join('registered_faces', f"{name}.jpg")) else None
-            users.append({'name': name, 'email': email, 'rollno': rollno, 'image': image_filename})
+    for user in fetch_all_users():
+        name, email, rollno = user
+        image_filename = f"{name}.jpg" if os.path.exists(os.path.join('registered_faces', f"{name}.jpg")) else None
+        users.append({'name': name, 'email': email, 'rollno': rollno, 'image': image_filename})
     return jsonify({'users': users})
 
 @app.route('/user/<name>', methods=['DELETE'])
-def delete_user(name):
+def delete_user_route(name):
     # Delete a registered user (remove their image)
     img_path = os.path.join('registered_faces', f'{name}.jpg')
     if os.path.exists(img_path):
         os.remove(img_path)
-        return jsonify({'success': True, 'message': f'{name} deleted'})
-    else:
-        return jsonify({'success': False, 'error': 'User not found'}), 404
+    delete_user(name)
+    return jsonify({'success': True, 'message': f'{name} deleted'})
 
 @app.route('/download_attendance', methods=['GET'])
 @admin_required

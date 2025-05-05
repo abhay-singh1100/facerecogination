@@ -1,16 +1,17 @@
-from flask import Flask, request, jsonify, send_from_directory, render_template_string, session
+from flask import Flask, request, jsonify, send_from_directory, render_template_string, session, send_file
 import numpy as np
 import cv2
 import base64
 import os
-from face_utils import save_face_image, recognize_faces_and_liveness_sequence, mark_attendance, get_attendance_status, mark_attendance_status
+from face_utils import save_face_image, recognize_faces_and_liveness_sequence, mark_attendance, get_attendance_status, mark_attendance_status, save_user_data, fetch_all_users, fetch_user_by_name, delete_user, fetch_all_attendance, fetch_face_image, fetch_attendance_by_date
 from datetime import datetime
 import csv
+import io
 
 app = Flask(__name__, static_folder='static')
-app.secret_key = 'your_secret_key_here'  # Change this in production
+app.secret_key = 'your_secret_key_here'  
 
-ADMIN_PASSWORD = 'abhay123'  # Change this in production
+ADMIN_PASSWORD = 'abhay123'  
 
 def is_admin():
     return session.get('is_admin', False)
@@ -40,15 +41,6 @@ def read_image_from_request(img_data_b64):
     img = cv2.imdecode(nparr, cv2.IMREAD_COLOR)
     return img
 
-def save_user_data(name, email, rollno):
-    user_data_file = 'user_data.csv'
-    file_exists = os.path.exists(user_data_file)
-    with open(user_data_file, mode='a', newline='') as file:
-        writer = csv.writer(file)
-        if not file_exists:
-            writer.writerow(['Name', 'Email', 'Roll Number'])
-        writer.writerow([name, email, rollno])
-
 @app.route('/register', methods=['POST'])
 def register():
     data = request.json
@@ -58,9 +50,11 @@ def register():
     img_b64 = data.get('image')
     if not name or not email or not rollno or not img_b64:
         return jsonify({'success': False, 'error': 'Missing name, email, rollno, or image'}), 400
-    img = read_image_from_request(img_b64)
-    save_face_image(name, img)
-    save_user_data(name, email, rollno)
+
+    # Decode the image and save it to the database
+    img_bytes = base64.b64decode(img_b64)
+    save_user_data(name, email, rollno, img_bytes)
+
     return jsonify({'success': True, 'message': f'{name} registered with email {email} and rollno {rollno}'})
 
 @app.route('/attendance', methods=['POST'])
@@ -80,14 +74,11 @@ def attendance():
 
 @app.route('/attendance_log', methods=['GET'])
 def attendance_log():
-    # Return attendance log as JSON (support new format)3
+    # Return attendance log as JSON
     records = []
-    if os.path.exists('attendance.csv'):
-        with open('attendance.csv', 'r') as f:
-            for line in f:
-                parts = line.strip().split(',')
-                if len(parts) >= 4:
-                    records.append({'name': parts[0], 'date': parts[1], 'time': parts[2], 'status': parts[3]})
+    for record in fetch_all_attendance():
+        name, date, time, status = record
+        records.append({'name': name, 'date': date, 'time': time, 'status': status})
     return jsonify({'records': records})
 
 @app.route('/attendance_status', methods=['GET'])
@@ -132,48 +123,59 @@ def manual_attendance():
 
 @app.route('/users', methods=['GET'])
 def users():
-    # List registered users (names, emails, roll numbers, and image filenames)
+    # List registered users (names, emails, roll numbers)
     users = []
-    with open('user_data.csv', 'r') as file:
-        next(file)  # Skip the header row
-        for line in file:
-            name, email, rollno = line.strip().split(',')
-            image_filename = f"{name}.jpg" if os.path.exists(os.path.join('registered_faces', f"{name}.jpg")) else None
-            users.append({'name': name, 'email': email, 'rollno': rollno, 'image': image_filename})
+    for user in fetch_all_users():
+        name, email, rollno = user
+        users.append({'name': name, 'email': email, 'rollno': rollno})
     return jsonify({'users': users})
 
+@app.route('/user/<name>/face', methods=['GET'])
+def get_user_face(name):
+    # Fetch the face image for a user
+    face_image = fetch_face_image(name)
+    if face_image:
+        return send_file(io.BytesIO(face_image), mimetype='image/jpeg')
+    return jsonify({'success': False, 'error': 'Face image not found'}), 404
+
 @app.route('/user/<name>', methods=['DELETE'])
-def delete_user(name):
+def delete_user_route(name):
     # Delete a registered user (remove their image)
     img_path = os.path.join('registered_faces', f'{name}.jpg')
     if os.path.exists(img_path):
         os.remove(img_path)
-        return jsonify({'success': True, 'message': f'{name} deleted'})
-    else:
-        return jsonify({'success': False, 'error': 'User not found'}), 404
+    delete_user(name)
+    return jsonify({'success': True, 'message': f'{name} deleted'})
 
 @app.route('/download_attendance', methods=['GET'])
 @admin_required
 def download_attendance():
     date = request.args.get('date')
-    if not os.path.exists('attendance.csv'):
-        return jsonify({'success': False, 'error': 'Attendance log not found'}), 404
+    temp_path = 'attendance_export.csv'
 
-    temp_path = 'attendance_with_headers.csv'
-    with open('attendance.csv', 'r') as f:
-        lines = f.readlines()
+    with open(temp_path, 'w', newline='') as csvfile:
+        writer = csv.writer(csvfile)
+        writer.writerow(['Name', 'Date (YYYY-MM-DD)', 'Time', 'Status'])  # Add column headers
 
-    with open(temp_path, 'w') as f:
-        f.write('Name,Email,Roll Number,Date,Time,Status\n')  # Add column headers
         if date:
-            filtered = [line for line in lines if len(line.split(',')) >= 4 and line.split(',')[3] == date]
-            f.writelines(filtered)
+            # Fetch attendance for a specific date
+            records = fetch_attendance_by_date(date)
         else:
-            f.writelines(lines)
+            # Fetch all attendance records
+            records = fetch_all_attendance()
+
+        for record in records:
+            name, record_date, time, status = record
+            # Ensure the date is in the format YYYY-MM-DD
+            formatted_date = datetime.strptime(record_date, '%Y-%m-%d').strftime('%Y-%m-%d')
+            writer.writerow([name, formatted_date, time, status])
 
     resp = send_from_directory('.', temp_path, as_attachment=True)
+
+    # Clean up temp file after sending
     import threading
-    threading.Timer(2.0, lambda: os.remove(temp_path)).start()  # Clean up temp file
+    threading.Timer(2.0, lambda: os.remove(temp_path)).start()
+
     return resp
 
 @app.route('/attendance_analytics', methods=['GET'])
@@ -181,17 +183,20 @@ def attendance_analytics():
     date = request.args.get('date')
     if not date:
         date = datetime.now().strftime('%Y-%m-%d')
+
+    # Fetch attendance status for the given date
     status = get_attendance_status(date)
-    total = len(status)
-    present = sum(1 for v in status.values() if v == 'present')
-    absent = total - present
-    percent = (present / total * 100) if total > 0 else 0
+    total_users = len(status)
+    present_count = sum(1 for s in status.values() if s == 'present')
+    absent_count = total_users - present_count
+    present_percentage = (present_count / total_users * 100) if total_users > 0 else 0
+
     return jsonify({
         'date': date,
-        'total': total,
-        'present': present,
-        'absent': absent,
-        'percent': round(percent, 2),
+        'total_users': total_users,
+        'present_count': present_count,
+        'absent_count': absent_count,
+        'present_percentage': round(present_percentage, 2),
         'status': status
     })
 

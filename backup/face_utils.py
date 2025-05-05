@@ -30,57 +30,24 @@ DB_FILE = 'database.db'
 def init_db():
     conn = sqlite3.connect(DB_FILE)
     cursor = conn.cursor()
-    # Create users table with face_image column
     cursor.execute('''
         CREATE TABLE IF NOT EXISTS users (
             name TEXT PRIMARY KEY,
             email TEXT NOT NULL,
-            rollno TEXT NOT NULL,
-            face_image BLOB
-        )
-    ''')
-    # Create attendance table
-    cursor.execute('''
-        CREATE TABLE IF NOT EXISTS attendance (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            name TEXT NOT NULL,
-            date TEXT NOT NULL,
-            time TEXT NOT NULL,
-            status TEXT NOT NULL,
-            FOREIGN KEY (name) REFERENCES users (name)
+            rollno TEXT NOT NULL
         )
     ''')
     conn.commit()
     conn.close()
 
-# Save user data with face image to the database
-def save_user_data(name, email, rollno, face_image):
+# Save user data to the database
+def save_user_data(name, email, rollno):
     conn = sqlite3.connect(DB_FILE)
     cursor = conn.cursor()
     cursor.execute('''
-        INSERT OR REPLACE INTO users (name, email, rollno, face_image)
-        VALUES (?, ?, ?, ?)
-    ''', (name, email, rollno, face_image))
-    conn.commit()
-    conn.close()
-
-# Fetch face image by name
-def fetch_face_image(name):
-    conn = sqlite3.connect(DB_FILE)
-    cursor = conn.cursor()
-    cursor.execute('SELECT face_image FROM users WHERE name = ?', (name,))
-    result = cursor.fetchone()
-    conn.close()
-    return result[0] if result else None
-
-# Save attendance record to the database
-def save_attendance(name, date, time, status):
-    conn = sqlite3.connect(DB_FILE)
-    cursor = conn.cursor()
-    cursor.execute('''
-        INSERT INTO attendance (name, date, time, status)
-        VALUES (?, ?, ?, ?)
-    ''', (name, date, time, status))
+        INSERT OR REPLACE INTO users (name, email, rollno)
+        VALUES (?, ?, ?)
+    ''', (name, email, rollno))
     conn.commit()
     conn.close()
 
@@ -102,28 +69,6 @@ def fetch_user_by_name(name):
     conn.close()
     return user
 
-# Fetch attendance records for a specific date
-def fetch_attendance_by_date(date):
-    conn = sqlite3.connect(DB_FILE)
-    cursor = conn.cursor()
-    cursor.execute('''
-        SELECT name, date, time, status FROM attendance WHERE date = ?
-    ''', (date,))
-    records = cursor.fetchall()
-    conn.close()
-    return records
-
-# Fetch all attendance records
-def fetch_all_attendance():
-    conn = sqlite3.connect(DB_FILE)
-    cursor = conn.cursor()
-    cursor.execute('''
-        SELECT name, date, time, status FROM attendance
-    ''')
-    records = cursor.fetchall()
-    conn.close()
-    return records
-
 # Delete a user by name
 def delete_user(name):
     conn = sqlite3.connect(DB_FILE)
@@ -134,26 +79,6 @@ def delete_user(name):
 
 # Initialize the database when the app starts
 init_db()
-
-def update_database_schema():
-    conn = sqlite3.connect(DB_FILE)
-    cursor = conn.cursor()
-    try:
-        # Add the face_image column if it doesn't exist
-        cursor.execute('''
-            ALTER TABLE users ADD COLUMN face_image BLOB
-        ''')
-        conn.commit()
-    except sqlite3.OperationalError as e:
-        if "duplicate column name" in str(e).lower():
-            print("Column 'face_image' already exists.")
-        else:
-            raise
-    finally:
-        conn.close()
-
-# Call the function to update the schema
-update_database_schema()
 
 def send_email_notification(email, name):
     sender_email = "abhaychauhan5051@gmail.com"  # Replace with your email
@@ -184,7 +109,9 @@ def mark_attendance(name):
     user = fetch_user_by_name(name)
     if user:
         _, email, rollno = user
-        save_attendance(name, date, time, 'present')
+        with open(attendance_file, 'a', newline='') as f:
+            writer = csv.writer(f)
+            writer.writerow([name, email, rollno, date, time, 'present'])
         send_email_notification(email, name)
 
 def is_already_present_today(name, date):
@@ -200,7 +127,8 @@ def is_already_present_today(name, date):
 def mark_attendance_status(name, date, status):
     # status: 'present' or 'absent'
     now = datetime.now().strftime('%H:%M:%S')
-    save_attendance(name, date, now, status)
+    with open(ATTENDANCE_FILE, 'a') as f:
+        f.write(f'{name},{date},{now},{status}\n')
 
 def get_attendance_status(date):
     # Returns dict: {name: 'present'/'absent'} for all registered users for the date
@@ -208,29 +136,20 @@ def get_attendance_status(date):
     users = [os.path.splitext(fn)[0] for fn in os.listdir(REGISTERED_DIR) if fn.lower().endswith('.jpg')]
     for user in users:
         status[user] = 'absent'
-    records = fetch_attendance_by_date(date)
-    for record in records:
-        name, _, _, status_value = record
-        status[name] = status_value
+    if os.path.exists(ATTENDANCE_FILE):
+        with open(ATTENDANCE_FILE, 'r') as f:
+            for line in f:
+                parts = line.strip().split(',')
+                if len(parts) >= 6 and parts[3] == date:
+                    status[parts[0]] = parts[5]
     return status
 
 def load_registered_faces():
     encs, names = [], []
-    conn = sqlite3.connect(DB_FILE)
-    cursor = conn.cursor()
-    cursor.execute('SELECT name, face_image FROM users')
-    users = cursor.fetchall()
-    conn.close()
-
-    for name, face_image in users:
-        if face_image:
-            # Decode the face image from binary and compute face encodings
-            nparr = np.frombuffer(face_image, np.uint8)
-            img = cv2.imdecode(nparr, cv2.IMREAD_COLOR)
-            enc = face_recognition.face_encodings(img)
-            if enc:
-                encs.append(enc[0])
-                names.append(name)
+    for fn in os.listdir(REGISTERED_DIR):
+        img = face_recognition.load_image_file(os.path.join(REGISTERED_DIR, fn))
+        encs.append(face_recognition.face_encodings(img)[0])
+        names.append(os.path.splitext(fn)[0])
     return encs, names
 
 def save_face_image(name, img_bgr):

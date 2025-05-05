@@ -6,7 +6,6 @@
     <title>Face Attendance System</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
     <header class="app-header">
@@ -108,18 +107,6 @@
         </form>
     </div>
 
-    <div id="analyticsCard" class="analytics-card">
-        <h3>Attendance Analytics</h3>
-        <div id="analyticsStats">
-            <p><b>Date:</b> <span id="analyticsDate"></span></p>
-            <p><b>Total Users:</b> <span id="totalUsers"></span></p>
-            <p><b>Present:</b> <span id="presentCount"></span></p>
-            <p><b>Absent:</b> <span id="absentCount"></span></p>
-            <p><b>Present %:</b> <span id="presentPercentage"></span>%</p>
-        </div>
-        <canvas id="analyticsChart" width="400" height="200"></canvas>
-    </div>
-
     <script src="script.js"></script>
     <script>
         // Show and hide the edit user page
@@ -163,57 +150,6 @@
                 showToast('Edit failed: Network error.');
             }
         };
-
-        async function loadAnalytics(date) {
-            const analyticsStats = document.getElementById('analyticsStats');
-            const analyticsDate = document.getElementById('analyticsDate');
-            const totalUsers = document.getElementById('totalUsers');
-            const presentCount = document.getElementById('presentCount');
-            const absentCount = document.getElementById('absentCount');
-            const presentPercentage = document.getElementById('presentPercentage');
-            const analyticsChart = document.getElementById('analyticsChart');
-
-            analyticsStats.innerHTML = '<div class="spinner"></div>';
-
-            try {
-                const res = await fetch(`/attendance_analytics?date=${date}`);
-                const data = await res.json();
-
-                analyticsDate.textContent = data.date;
-                totalUsers.textContent = data.total_users;
-                presentCount.textContent = data.present_count;
-                absentCount.textContent = data.absent_count;
-                presentPercentage.textContent = data.present_percentage;
-
-                // Draw chart
-                if (window.Chart) {
-                    new Chart(analyticsChart.getContext('2d'), {
-                        type: 'doughnut',
-                        data: {
-                            labels: ['Present', 'Absent'],
-                            datasets: [{
-                                data: [data.present_count, data.absent_count],
-                                backgroundColor: ['#10b981', '#ef4444'],
-                            }]
-                        },
-                        options: {
-                            responsive: true,
-                            plugins: {
-                                legend: {
-                                    position: 'bottom',
-                                },
-                            },
-                        },
-                    });
-                }
-            } catch (e) {
-                analyticsStats.innerHTML = 'Failed to load analytics.';
-            }
-        }
-
-        // Load analytics for today on page load
-        const today = new Date().toISOString().slice(0, 10);
-        loadAnalytics(today);
     </script>
 </body>
 </html>
